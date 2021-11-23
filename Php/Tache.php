@@ -9,7 +9,7 @@ class Tache
 
     public function __construct()
     {
-
+print(bonjour);
     }
 }
 
