@@ -1,3 +1,8 @@
+<html>
+
+<body>
+<h1>Test de la classe Tache</h1>
+
 <?php
 
 class Tache
@@ -20,4 +25,11 @@ class Tache
     }
 
 }
+$tacheTest=new Tache(003,"Nourrir les poulets","Il faut les nourrir pour les manger après",10/12/2021);
+$tacheTest->show();
+?>
 
+
+
+</body>
+</html>
