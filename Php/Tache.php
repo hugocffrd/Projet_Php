@@ -21,11 +21,11 @@ class Tache
     }
 
     public function show(){
-        print $this->IdT." ".$this->Nom.",".$this->Texte.",".$this->DateFin."<br>";
+        print $this->IdT." ".$this->Nom.",".$this->Texte.",".$this->DateFin->."<br>";
     }
 
 }
-$tacheTest=new Tache(003,"Nourrir les poulets","Il faut les nourrir pour les manger après",10/12/2021);
+$tacheTest=new Tache(003,"Nourrir les hugo","Il faut les nourrir pour les manger après",10/12/2021);
 $tacheTest->show();
 ?>
 
