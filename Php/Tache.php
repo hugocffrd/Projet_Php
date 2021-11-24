@@ -21,7 +21,7 @@ class Tache
     }
 
     public function show(){
-        print $this->IdT." ".$this->Nom.",".$this->Texte.",".$this->DateFin->."<br>";
+        print $this->IdT." ".$this->Nom.",".$this->Texte.",".$this->DateFin."<br>";
     }
 
 }
