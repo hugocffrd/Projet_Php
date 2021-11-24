@@ -7,7 +7,7 @@
             {
 
 
-                public function testCreation ()
+                public function TCreate ()
                 {
                     $tacheTest = new Tache(003, "Nourrir les hugo", "Il faut les nourrir pour les manger après", 10 / 12 / 2021);
                     $tacheTest->show();
