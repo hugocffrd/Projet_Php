@@ -1,4 +1,4 @@
-<html>
+<html lang="FR">
     <body>
     <h1>Test création tâche</h1>
     <?php

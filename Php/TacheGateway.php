@@ -8,9 +8,9 @@ class TacheGateway
     private $connect;
 
 
-        public function __contruct($dsn,$user,$pwd){
+    public function __construct($dsn,$user,$pwd){
         $this->connect=new Connection($dsn,$user,$pwd);
-        }
+    }
 
     public	function insertTache(Tache $tache){
         $query="INSERT INTO tache VALUES(:IdT,:Nom,:Texte,:DateFin)";
@@ -31,4 +31,3 @@ class TacheGateway
     }
 
 }
-
