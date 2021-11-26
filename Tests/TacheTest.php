@@ -11,8 +11,8 @@
         $tacheTest->show();
 
 
-        /*$Tgateway=new TacheGateway("mysql:host=localhost;dbname=dbroot","root","");
-        $Tgateway->insertTache($tacheTest);*/
+        $Tgateway=new TacheGateway("mysql:host=localhost;dbname=dbroot","root","");
+        //$Tgateway->insertTache($tacheTest);
 
         $findTache=$Tgateway->findById(004);
         $findTache->show();

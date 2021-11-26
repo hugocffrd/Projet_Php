@@ -21,17 +21,13 @@ class TacheGateway
             ":DateFin"=>array($tache->DateFin,PDO::PARAM_STR)));
     }
 
-    public function findById ($id):Tache{
-        $query="SELECT * FROM Tache WHERE IdT=:id";
+    public function findById ($IdT):Tache{
+        $query="SELECT * FROM tache WHERE IdT=:IdT";
         $this->connect->executeQuery($query,array(
-            ":IdT"=>array($id,PDO::PARAM_STR),
-            ":Nom"=>array($id,PDO::PARAM_STR),
-            ":Texte"=>array($id,PDO::PARAM_STR),
-            ":DateFin"=>array($id,PDO::PARAM_STR)));
+            ":IdT"=>array($IdT,PDO::PARAM_STR)));
         $results=$this->connect->getResults();
-        foreach ($results as $row){
-            $newTache=new Tache($row ["IdT"],$row ["Nom"],$row ["Texte"],$row ["DateFin"]);}
-        return $newTache;
+            return (new Tache($results["IdT"],$results["Nom"],$results["Texte"],$results["DateFin"]));
+
     }
 
 }
