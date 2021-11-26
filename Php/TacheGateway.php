@@ -16,10 +16,9 @@ class TacheGateway
             $query="INSERT INTO TACHE (Nom,Texte,dateFin)VALUES($id,$nom,$texte,$dateFin)";
             $this->connect->executeQuery($query,array(
                 ":IdT"=>array($id,PDO::PARAM_STR),
-                ":Nom"=>array($id,PDO::PARAM_STR),
-                ":Texte"=>array($id,PDO::PA,
-                ":DateFin"=>array($id,PDO::PARA))
-
+                ":Nom"=>array($nom,PDO::PARAM_STR),
+                ":Texte"=>array($texte,PDO::PARAM_STR),
+                ":DateFin"=>array($dateFin,PDO::PARAM_STR)));
     }
 
     public function findById ($id):array{
@@ -28,9 +27,11 @@ class TacheGateway
             ":IdT"=>array($id,PDO::PARAM_STR),
             ":Nom"=>array($id,PDO::PARAM_STR),
             ":Texte"=>array($id,PDO::PARAM_STR),
-            ":DateFin"=>array($id,PDO::PARAM_STR),
-
-        ))
+            ":DateFin"=>array($id,PDO::PARAM_STR)));
+        $results=$this->connect->getResults();
+        foreach ($results as $row){
+            $tabTache[]=new Tache($row ["IdT"]);}
+        return $tabTache;
     }
 
 }
