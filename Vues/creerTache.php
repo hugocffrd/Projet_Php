@@ -1,41 +1,35 @@
-<!DOCTYPE html>
-<html lang="FR" >
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Creation Tache</title>
-    <link rel="stylesheet" href="style.css">
-
+    <meta charset="utf-8">
+    <!-- importer le fichier de style -->
+    <link rel="stylesheet" href="styleCo.css" media="screen" type="text/css" />
 </head>
 <body>
-<div class="container">
-    <form action="creerTache.php" method="post">
-        <div class="row">
-            <h4>Tâche</h4>
-            <div class="input-group input-group-icon" >
-                <input type="number" placeholder="id" name="id"/>
-                <div class="input-icon"><i class="fa fa-user"></i></div>
-            </div>
-            <div class="input-group input-group-icon">
-                <input type="text" placeholder="Nom de votre tâche" name="nom"/>
-                <div class="input-icon"><i class="fa fa-envelope"></i></div>
-            </div>
-            <div class="input-group input-group-icon">
-                <input type="text" placeholder="Description" name="desc"/>
-                <div class="input-icon"><i class="fa fa-key"></i></div>
-            </div>
-            <div class="input-group input-group-icon">
-                <input type="date" placeholder="date de fin" name="date"/>
-                <div class="input-icon"><i class="fa fa-key"></i></div>
-            </div>
-            <div class="input-group input-group-icon">
-                <input type="submit" value="Valider"/>
-                <div class="input-icon"><i class="fa fa-key"></i></div>
-            </div>
+<div id="container">
+    <!-- zone de connexion -->
 
+    <form action="creerTache.php" method="POST">
+        <center><h1>Tâche</h1></center>
 
-        </div>
+        <label><b>Id</b></label>
+
+        <input type="number" placeholder="id" name="id"/>
+
+        <label><b>Nom de la Tâche</b></label>
+        <input type="text" placeholder="Nom de votre tâche" name="nom"/>
+
+        <label><b>Description</b></label>
+        <input type="text" placeholder="Description" name="desc"/>
+
+        <label><b>date de fin</b></label>
+        <input type="date" placeholder="date de fin" name="date"/>
+
+        <input type="submit" id='submit' value='LOGIN' >
+
     </form>
 </div>
+</body>
+</html>
 <?php
 require_once "../Php/Tache.php";
 require_once '../Php/TacheGateway.php';
@@ -51,8 +45,4 @@ $Tgateway->insertTache($tacheCreer);
 //$Tgateway=new TacheGateway("mysql:host=localhost;dbname=dbroot","root","");
 //$Tgateway->insertTache($tacheCreer);
 print("ID : $id <br>Nom : $nom <br>Description : $desc<br>Date : $date");
-
-
 ?>
-</body>
-</html>
