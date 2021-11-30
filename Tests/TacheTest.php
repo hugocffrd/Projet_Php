@@ -11,7 +11,7 @@
         $tacheTest = new Tache(004, 'Nourrir les hugo', 'Il faut les nourrir pour les manger après', '10 / 12 / 2021');
         $tacheTest->show();
 
-        //Test crétion tache dans base de données
+        //Test création tache dans base de données
         $Tgateway=new TacheGateway("mysql:host=localhost;dbname=dbroot","root","");
         //$Tgateway->insertTache($tacheTest);
 
