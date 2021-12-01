@@ -1,4 +1,4 @@
-<html lang="FR">
+<!DOCTYPE html>
     <body>
     <h1>Test pour les tâches</h1>
     <?php

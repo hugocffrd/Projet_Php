@@ -1,4 +1,4 @@
-<html lang="FR">
+<!DOCTYPE html lang="FR">
     <body>
         <h1>Test pour les utilisateurs</h1>
 
