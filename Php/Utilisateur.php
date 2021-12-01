@@ -18,5 +18,9 @@ class Utilisateur
         return $this->Nom;
     }
 
+    public function get_Prenom(){
+        return $this->Prenom;
+    }
+
     
 }

@@ -42,7 +42,5 @@ $tacheCreer=new Tache($id,$nom,$desc,$date);
 $Tgateway=new TacheGateway("mysql:host=localhost;dbname=dbroot","root","");
 $Tgateway->insertTache($tacheCreer);
 
-//$Tgateway=new TacheGateway("mysql:host=localhost;dbname=dbroot","root","");
-//$Tgateway->insertTache($tacheCreer);
 print("ID : $id <br>Nom : $nom <br>Description : $desc<br>Date : $date");
 ?>
