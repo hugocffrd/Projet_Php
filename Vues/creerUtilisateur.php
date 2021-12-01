@@ -1,12 +1,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <!-- importer le fichier de style -->
     <link rel="stylesheet" href="styleCo.css" media="screen" type="text/css" />
 </head>
 <body>
 <div id="container">
-    <!-- zone de connexion -->
 
     <form action="creerUtilisateur.php" method="POST">
         <h1>Inscription</h1>
@@ -32,15 +30,15 @@
         require_once "../Php/Utilisateur.php";
         require_once "../Php/UtilisateurGateway.php";
 
-$mail = isset($_POST['mail']) ? $_POST['mail'] : "";
-$nom =isset($_POST['nom']) ? $_POST['nom'] : "";
-$prenom =isset($_POST['prenom']) ? $_POST['prenom'] : "";
-$pwd = isset($_POST['password']) ? $_POST['password'] : "";
+            $mail = isset($_POST['mail']) ? $_POST['mail'] : "";
+            $nom =isset($_POST['nom']) ? $_POST['nom'] : "";
+            $prenom =isset($_POST['prenom']) ? $_POST['prenom'] : "";
+            $pwd = isset($_POST['password']) ? $_POST['password'] : "";
 
-$utilisateur = new Utilisateur($mail,$nom,$prenom,$pwd);
-$Ugateway=new UtilisateurGateway("mysql:host=localhost;dbname=dbroot","root","");
-$Ugateway->insertUtilisateur($utilisateur);
+            $utilisateur = new Utilisateur($mail,$nom,$prenom,$pwd);
+            $Ugateway=new UtilisateurGateway("mysql:host=localhost;dbname=dbroot","root","");
+            $Ugateway->insertUtilisateur($utilisateur);
 
-print("Mail : $mail <br>Nom : $nom <br>Prénom : $prenom<br>password : $pwd");
+            print("Mail : $mail <br>Nom : $nom <br>Prénom : $prenom<br>password : $pwd");
 ?>
 </html>

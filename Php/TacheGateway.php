@@ -34,4 +34,16 @@ class TacheGateway
 
     }
 
+    public function findAll():array{
+
+        $query="SELECT * FROM tache";
+        $this->connect->executeQuery($query,array());
+        $results=$this->connect->getResults();
+        foreach ($results as $row){
+            $tabTache[]=new Tache($row["IdT"],$row["Nom"],$row["Texte"],$row["DateFin"]);
+        }
+        return $tabTache;
+
+    }
+
 }

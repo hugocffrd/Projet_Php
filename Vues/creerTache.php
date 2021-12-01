@@ -9,7 +9,7 @@
     <!-- zone de connexion -->
 
     <form action="creerTache.php" method="POST">
-        <center><h1>Tâche</h1></center>
+        <h1>Tâche</h1>
 
         <label><b>Id</b></label>
 
