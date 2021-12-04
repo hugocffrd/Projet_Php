@@ -14,13 +14,24 @@
 
     <?php
         require_once '../Modele/TacheGateway.php';
+        require_once '../Modele/ListeTacheGateway.php';
         $Tgateway=new TacheGateway("mysql:host=localhost;dbname=dbroot","root","");
+        $LTgateway=new ListeTacheGateway("mysql:host=localhost;dbname=dbroot","root","");
 
-        $tabFindTache[]=$Tgateway->findAll();
-        foreach ($tabFindTache as $tab){
-            foreach ($tab as $tache){
-                print ($tache->getNom().$tache->getTexte().$tache->getDateFin());}
-}
+        $tabFindListeTache[]=$LTgateway->findAll();
+        foreach ($tabFindListeTache as $tabL){
+            foreach ($tabL as $liste){
+                if ($liste->getPrivee()==false){
+                    $tabFindTache[]=$Tgateway->findbyIdL($liste->getIdL());
+                    print("<br>Liste ".$liste->getIdL().":<br>");
+                    foreach ($tabFindTache as $tabT) {
+                        foreach ($tabT as $tache) {
+                            print ($tache->getNom() . " " . $tache->getTexte() . " " . $tache->getDateFin()."<br>");
+                        }
+                    }
+                }
+            }
+        }
     ?>
 
 </body>

@@ -9,7 +9,7 @@
         $prenom = htmlspecialchars($_POST['prenom']);
         $pwd = htmlspecialchars($_POST['password']);
         $pwd_retype = htmlspecialchars($_POST['password_retype']);
-        $mail = strtolower($mail); // on transforme toute les lettres majuscule en minuscule pour éviter que Foo@gmail.com et foo@gmail.com soient deux compte différents ..
+        $mail = strtolower($mail); // on transforme toutes les lettres majuscule en minuscule pour éviter que Foo@gmail.com et foo@gmail.com soient deux compte différents ..
         $connect = new Connection("mysql:host=localhost;dbname=dbroot", "root", "");
 
 
@@ -27,7 +27,7 @@
                                 // $password=hash('sha256',$password);
                                 $ip=$_SERVER['REMOTE_ADDR'];
 
-                                $insert=$connect->prepare("INSERT INTO utilisateur(Nom,")
+                                $insert=$connect->prepare("INSERT INTO utilisateur(Nom,");
 
                             } else header('Location:creerUtilisateur.php?reg_err=password');
                         } else header('Location:creerUtilisateur.php?reg_err=mail');

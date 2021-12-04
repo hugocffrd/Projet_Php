@@ -5,12 +5,15 @@
 class Tache
 {
     private $IdT;
+    private $Nom;
+    private $Texte;
+    private $DateFin;
+    private $IdL;
 
     public function getIdT()
     {
         return $this->IdT;
     }
-    private $Nom;
 
     public function setNom($Nom): void
     {
@@ -21,7 +24,6 @@ class Tache
     {
         return $this->Nom;
     }
-    private $Texte;
 
     public function setTexte($Texte): void
     {
@@ -32,7 +34,7 @@ class Tache
     {
         return $this->Texte;
     }
-    private $DateFin;
+
 
     public function setDateFin($DateFin): void
     {
@@ -44,16 +46,22 @@ class Tache
         return $this->DateFin;
     }
 
-    public function __construct($IdT,$Nom,$Texte,$DateFin)
+    public function getIdL()
+    {
+        return $this->IdL;
+    }
+
+    public function __construct($IdT,$Nom,$Texte,$DateFin,$IdL)
     {
         $this->IdT=$IdT;
         $this->Nom=$Nom;
         $this->Texte=$Texte;
         $this->DateFin=$DateFin;
+        $this->IdL=$IdL;
     }
 
     public function show(){
-        print $this->IdT." ".$this->Nom.",".$this->Texte.",".$this->DateFin."<br>";
+        print $this->IdT." ".$this->Nom.",".$this->Texte.",".$this->DateFin.",".$this->IdL."<br>";
     }
 
 

@@ -3,7 +3,6 @@
 class ListeTache
 {
     private $IdL;
-    private $lesTaches=array(Tache::class);
     private $mailU;
     private $privee;
 
@@ -12,10 +11,6 @@ class ListeTache
         return $this->IdL;
     }
 
-    public function getLesTaches(): array
-    {
-        return $this->lesTaches;
-    }
 
     public function getPrivee()
     {
@@ -27,9 +22,8 @@ class ListeTache
         return $this->mailU;
     }
 
-    public function __construct($IdL,$lesTaches,$privee,$mailU){
+    public function __construct($IdL,$privee,$mailU){
         $this->IdL=$IdL;
-        $this->lesTaches=$lesTaches;
         $this->privee=$privee;
         $this->mailU=$mailU;
     }

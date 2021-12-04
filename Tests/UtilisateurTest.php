@@ -1,4 +1,4 @@
-<!DOCTYPE html lang="FR">
+<!DOCTYPE html>
     <body>
         <h1>Test pour les utilisateurs</h1>
 
@@ -19,6 +19,6 @@
         $tabFindUser[]=$Ugateway->findByMail("jack@gmail.com");
         foreach ($tabFindUser as $tab){
             foreach ($tab as $user){
-                print ($user->get_Nom());}
+                print ($user->getNom());}
 
 }
