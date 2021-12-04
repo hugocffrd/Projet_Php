@@ -6,7 +6,7 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
 
     $mail = htmlspecialchars($_POST['mail']);
     $password = htmlspecialchars($_POST['password']);
-    $connect = new PDO("mysql:host=localhost;dbname=dbroot", "root", "");
+    $connect = new Connection("mysql:host=localhost;dbname=dbroot", "root", "");
 
     $check = $connect->prepare('SELECT Nom , Mail, Pwd from utilisateur where Mail = ?');
     $check->execute(array($mail));
