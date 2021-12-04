@@ -13,10 +13,10 @@ class UtilisateurGateway
     public	function insertUtilisateur(Utilisateur $user){
         $query="INSERT INTO utilisateur VALUES(:Mail,:Nom,:Prenom,:Pwd)";
         $this->connect->executeQuery($query,array(
-            ":Mail"=>array($user->Mail,PDO::PARAM_STR),
-            ":Nom"=>array($user->Nom,PDO::PARAM_STR),
-            ":Prenom"=>array($user->Prenom,PDO::PARAM_STR),
-            ":Pwd"=>array($user->Pwd,PDO::PARAM_STR)));
+            ":Mail"=>array($user->getMail(),PDO::PARAM_STR),
+            ":Nom"=>array($user->getNom(),PDO::PARAM_STR),
+            ":Prenom"=>array($user->getPrenom(),PDO::PARAM_STR),
+            ":Pwd"=>array($user->getPwd(),PDO::PARAM_STR)));
     }
 
     public function findByMail ($Mail):array{

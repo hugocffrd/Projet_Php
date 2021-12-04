@@ -27,8 +27,8 @@
 </div>
 </body>
 <?php
-        require_once "../Php/Utilisateur.php";
-        require_once "../Php/UtilisateurGateway.php";
+        require_once "../Modele/Utilisateur.php";
+        require_once "../Modele/UtilisateurGateway.php";
 
             $mail = isset($_POST['mail']) ? $_POST['mail'] : "";
             $nom =isset($_POST['nom']) ? $_POST['nom'] : "";

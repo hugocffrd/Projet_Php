@@ -13,13 +13,13 @@
 </html>
 
     <?php
-        require_once '../Php/TacheGateway.php';
+        require_once '../Modele/TacheGateway.php';
         $Tgateway=new TacheGateway("mysql:host=localhost;dbname=dbroot","root","");
 
         $tabFindTache[]=$Tgateway->findAll();
         foreach ($tabFindTache as $tab){
             foreach ($tab as $tache){
-                print ($tache->get_Nom().$tache->get_Texte().$tache->get_DateFin());}
+                print ($tache->getNom().$tache->getTexte().$tache->getDateFin());}
 }
     ?>
 

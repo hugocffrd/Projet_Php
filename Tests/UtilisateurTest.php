@@ -3,8 +3,8 @@
         <h1>Test pour les utilisateurs</h1>
 
         <?php
-        require_once "../Php/Utilisateur.php";
-        require_once "../Php/UtilisateurGateway.php";
+        require_once "../Modele/Utilisateur.php";
+        require_once "../Modele/UtilisateurGateway.php";
 
         //Test création utilisateur en mémoire
         $pdoExcp=new Exception();

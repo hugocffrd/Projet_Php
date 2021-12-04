@@ -31,8 +31,8 @@
 </body>
 </html>
 <?php
-require_once "../Php/Tache.php";
-require_once '../Php/TacheGateway.php';
+require_once "../Modele/Tache.php";
+require_once '../Modele/TacheGateway.php';
 $id = isset($_POST['id']) ? $_POST['id'] : "";
 $nom =isset($_POST['nom']) ? $_POST['nom'] : "";
 $desc =isset($_POST['desc']) ? $_POST['desc'] : "";

@@ -15,10 +15,10 @@ class TacheGateway
     public	function insertTache(Tache $tache){
         $query="INSERT INTO tache VALUES(:IdT,:Nom,:Texte,:DateFin)";
         $this->connect->executeQuery($query,array(
-            ":IdT"=>array($tache->IdT,PDO::PARAM_STR),
-            ":Nom"=>array($tache->Nom,PDO::PARAM_STR),
-            ":Texte"=>array($tache->Texte,PDO::PARAM_STR),
-            ":DateFin"=>array($tache->DateFin,PDO::PARAM_STR)));
+            ":IdT"=>array($tache->getIdT(),PDO::PARAM_STR),
+            ":Nom"=>array($tache->getNom(),PDO::PARAM_STR),
+            ":Texte"=>array($tache->getTexte(),PDO::PARAM_STR),
+            ":DateFin"=>array($tache->getDateFin(),PDO::PARAM_STR)));
     }
 
     public function findById ($IdT):array{

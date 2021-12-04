@@ -3,8 +3,8 @@
     <h1>Test pour les tâches</h1>
     <?php
 
-        require_once "../Php/Tache.php";
-        require_once "../Php/TacheGateway.php";
+        require_once "../Modele/Tache.php";
+        require_once "../Modele/TacheGateway.php";
 
         //Test création tache en mémoire
         $pdoExcp=new Exception();

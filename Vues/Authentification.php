@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../Php/Connection.php';
+require '../Modele/Connection.php';
 
 if (isset($_POST['mail']) && isset($_POST['password'])) {
 
