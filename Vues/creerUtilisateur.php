@@ -2,6 +2,8 @@
 
 <head>
     <meta charset="utf-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styleCo.css" media="screen" type="text/css" />
 </head>
 
@@ -67,6 +69,7 @@
         <form action="inscription_verif.php" method="POST">
             <h1>Inscription</h1>
 
+
             <label><b>Adresse mail</b></label>
             <input type="mail" placeholder="Entrer l'adresse mail" name="mail" required>
 
@@ -78,7 +81,7 @@
 
             <label><b>Mot de passe</b></label>
             <input type="password" placeholder="Entrer le mot de passe" name="password" required>
-            <label><b>Retapper mot de passe</b></label>
+            <label><b>Confirmer le mot de passe</b></label>
             <input type="password" placeholder="Retapper le mot de passe" name="password_retype" required>
             <input type="submit" id='submit' value='Register'>
         </form>
