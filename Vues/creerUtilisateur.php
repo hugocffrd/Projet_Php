@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <div class="container-sm">
+    <div class="container">
         <?php
         if (isset($_GET['reg_err'])) {
             $err = htmlspecialchars($_GET['reg_err']);
@@ -84,6 +84,8 @@
             <label><b>Confirmer le mot de passe</b></label>
             <input type="password" placeholder="Retapper le mot de passe" name="password_retype" required>
             <input type="submit" id='submit' value="S'inscrire">
+            <p class="text-center"><a href="connexion.php">Se connecter</a></p>
+
         </form>
     </div>
 </body>
@@ -93,10 +95,10 @@
         background: #90cbff;
     }
 
-    #container {
-        width: 400px;
+    .container {
+        width: 500px;
         margin: 0 auto;
-        margin-top: 10%;
+        margin-top: 5%;
     }
 
     form {
@@ -145,7 +147,7 @@
     }
 
     input[type=submit] {
-        background-color: #53af57;
+        background-color: #fea347;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
@@ -156,8 +158,8 @@
 
     input[type=submit]:hover {
         background-color: white;
-        color: #53af57;
-        border: 1px solid #53af57;
+        color: #fea347;
+        border: 1px solid #fea347;
     }
 </style>
 

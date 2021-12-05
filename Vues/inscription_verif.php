@@ -29,6 +29,13 @@
                                 $utilisateur = new Utilisateur($mail, $nom, $prenom, $pwd);
                                 $Ugateway = new UtilisateurGateway("mysql:host=localhost;dbname=dbroot", "root", "");
                                 $Ugateway->insertUtilisateur($utilisateur);
+                                // $insert = $connect->prepare('INSERT INTO utilisateur(Mail, Nom, Prenom,Pwd) VALUES(:mail, :nom, :prenom, :pwd)');
+                                // $insert->execute(array(
+                                //     'mail' => $mail,
+                                //     'nom' => $nom,
+                                //     'prenom' => $prenom,
+                                //     'pwd' => $pwd
+                                // ));
 
                                 header('Location :creerUtilisateur.php?reg_err=success');
                             } else header('Location:creerUtilisateur.php?reg_err=password');

@@ -52,7 +52,10 @@
             <input type="password" placeholder="Entrer le mot de passe" name="password" required>
 
             <input type="submit">
+            <p class="text-center"><a href="creerUtilisateur.php">Inscription</a></p>
+
         </form>
+
     </div>
 </body>
 
@@ -113,7 +116,7 @@
     }
 
     input[type=submit] {
-        background-color: #53af57;
+        background-color: #fea347;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
@@ -124,8 +127,8 @@
 
     input[type=submit]:hover {
         background-color: white;
-        color: #53af57;
-        border: 1px solid #53af57;
+        color: #fea347;
+        border: 1px solid #fea347;
     }
 </style>
 
