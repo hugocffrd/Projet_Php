@@ -7,7 +7,63 @@
 
 <body>
     <div id="container">
+        <?php
+        if (isset($_GET['reg_err'])) {
+            $err = htmlspecialchars($_GET['reg_err']);
 
+            switch ($err) {
+                case 'success':
+        ?>
+                    <div class="alert alert-sucess">
+                        <strong>Succès </strong>Inscription réussie !
+                    </div>
+                <?php
+                    break;
+                case 'password':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur </strong>Les mots de passes ne corespondent pas !
+                    </div>
+                <?php
+                    break;
+                case 'mail':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur </strong>Adresse mail non valide
+                    </div>
+                <?php
+                    break;
+                case 'mail_lenght':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur </strong>L'adresse mail fournis est trop longue
+                    </div>
+                <?php
+                    break;
+                case 'prenom_lenght':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur </strong> Le prenom donné est trop long
+                    </div>
+                <?php
+                    break;
+
+                case 'nom_Lenght':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur </strong>Le nom donné est trop long
+                    </div>
+                <?php
+                    break;
+                case 'already':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur </strong>Compte déja existant
+                    </div>
+        <?php
+            }
+        }
+        ?>
         <form action="inscription_verif.php" method="POST">
             <h1>Inscription</h1>
 
@@ -28,20 +84,5 @@
         </form>
     </div>
 </body>
-<?php
-require_once "../Modele/Utilisateur.php";
-require_once "../Modele/UtilisateurGateway.php";
-
-$mail = isset($_POST['mail']) ? $_POST['mail'] : "";
-$nom = isset($_POST['nom']) ? $_POST['nom'] : "";
-$prenom = isset($_POST['prenom']) ? $_POST['prenom'] : "";
-$pwd = isset($_POST['password']) ? $_POST['password'] : "";
-
-$utilisateur = new Utilisateur($mail, $nom, $prenom, $pwd);
-$Ugateway = new UtilisateurGateway("mysql:host=localhost;dbname=dbroot", "root", "");
-$Ugateway->insertUtilisateur($utilisateur);
-
-print("Mail : $mail <br>Nom : $nom <br>Prénom : $prenom<br>password : $pwd");
-?>
 
 </html>

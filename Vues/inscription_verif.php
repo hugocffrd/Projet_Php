@@ -3,7 +3,7 @@
     require_once "../Modele/Utilisateur.php";
     require_once "../Modele/UtilisateurGateway.php";
 
-    if (isset($_POST['mail']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['password'])) {
+    if (isset($_POST['mail']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['password']) && isset($_POST['password_retype'])) {
         $mail = htmlspecialchars($_POST['mail']);
         $nom = htmlspecialchars($_POST['nom']);
         $prenom = htmlspecialchars($_POST['prenom']);
@@ -13,7 +13,7 @@
         $connect = new Connection("mysql:host=localhost;dbname=dbroot", "root", "");
 
 
-        $check = $connect->prepare('SELECT Nom , Mail, Pwd from utilisateur where Mail = ?');
+        $check = $connect->prepare('SELECT Mail,Nom ,Prenom, Pwd from utilisateur where Mail = ?');
         $check->execute(array($mail));
         $data = $check->fetch();
         $row = $check->rowCount();
@@ -25,10 +25,12 @@
                         if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                             if ($pwd == $pwd_retype) {
                                 // $password=hash('sha256',$password);
-                                $ip=$_SERVER['REMOTE_ADDR'];
+                                // $ip=$_SERVER['REMOTE_ADDR'];
+                                $utilisateur = new Utilisateur($mail, $nom, $prenom, $pwd);
+                                $Ugateway = new UtilisateurGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+                                $Ugateway->insertUtilisateur($utilisateur);
 
-                                $insert=$connect->prepare("INSERT INTO utilisateur(Nom,");
-
+                                header('Location :creerUtilisateur.php?reg_err=success');
                             } else header('Location:creerUtilisateur.php?reg_err=password');
                         } else header('Location:creerUtilisateur.php?reg_err=mail');
                     } else header('Location:creerUtilisateur.php?reg_err=mail_lenght');
