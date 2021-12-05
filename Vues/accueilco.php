@@ -29,8 +29,11 @@ $data = $req->fetch();
                                 ?> !</h1>
         <hr />
 
+
+        <a href="creerTache.php" class="btn btn-primary btn-lg">Creer une tâche</a>
         <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
     </div>
+
 
 </body>
 <style>
