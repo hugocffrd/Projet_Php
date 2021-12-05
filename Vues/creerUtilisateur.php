@@ -65,7 +65,9 @@
         }
         ?>
         <form action="inscription_verif.php" method="POST">
-            <h1>Inscription</h1>
+            <center>
+                <h1>Inscription</h1>
+            </center>
 
 
             <label><b>Adresse mail</b></label>
