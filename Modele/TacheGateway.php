@@ -47,12 +47,13 @@ class TacheGateway
 
     }
 
-    public function findByIdL ($IdT):array{
+    public function findByIdL ($IdL):array{
 
         $query="SELECT * FROM tache WHERE IdL=:IdL";
         $this->connect->executeQuery($query,array(
-            ":IdL"=>array($IdT,PDO::PARAM_STR)));
+            ":IdL"=>array($IdL,PDO::PARAM_STR)));
         $results=$this->connect->getResults();
+        $tabTache=array();
         foreach ($results as $row){
             $tabTache[]=new Tache($row["IdT"],$row["Nom"],$row["Texte"],$row["DateFin"],$row["IdL"]);
         }
