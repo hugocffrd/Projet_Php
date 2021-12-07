@@ -10,12 +10,8 @@
     <div id="container">
         <!-- zone de connexion -->
 
-        <form action="creerTache.php" method="POST">
+        <form action="creerTache_verif.php" method="POST">
             <h1>Tâche</h1>
-
-            <label><b>Id</b></label>
-
-            <input type="number" placeholder="id" name="id" />
 
             <label><b>Nom de la Tâche</b></label>
             <input type="text" placeholder="Nom de votre tâche" name="nom" />
@@ -26,7 +22,7 @@
             <label><b>date de fin</b></label>
             <input type="date" placeholder="date de fin" name="date" />
 
-            <input type="submit" id='submit' value='LOGIN'>
+            <input type="submit" id='submit' value='Créer'>
 
         </form>
     </div>
@@ -106,19 +102,3 @@
 </style>
 
 </html>
-<?php
-require_once "../Modele/Tache.php";
-require_once '../Modele/TacheGateway.php';
-$id = isset($_POST['id']);
-$nom = isset($_POST['nom']);
-$desc = isset($_POST['desc']);
-$date = isset($_POST['date']);
-
-//$idl = isset($_POST['idl']); à coder !!!
-
-$tacheCreer = new Tache($id, $nom, $desc, $date, $idl);
-$Tgateway = new TacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
-$Tgateway->insertTache($tacheCreer);
-
-print("ID : $id <br>Nom : $nom <br>Description : $desc<br>Date : $date");
-?>
