@@ -20,7 +20,7 @@
             <input type="text" placeholder="Description" name="desc" />
 
             <label><b>date de fin</b></label>
-            <input type="date" placeholder="date de fin" name="date" />
+            <input type="date" placeholder="date de fin" name="dateF" />
 
             <input type="submit" id='submit' value='Créer'>
 
