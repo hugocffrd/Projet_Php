@@ -9,15 +9,30 @@
 <body>
     <div id="container">
         <!-- zone de connexion -->
+        <?php
+        if (isset($_GET['reg_err'])) {
+            $err = htmlspecialchars($_GET['reg_err']);
+
+            switch ($err) {
+                case 'success':
+        ?>
+        <div class="alert alert-success">
+            <strong>Succès </strong>Tâche créer !
+        </div>
+        <?php
+        break;
+        case 'password':
+        ?>        
+
 
         <form action="creerTache_verif.php" method="POST">
             <h1>Tâche</h1>
 
             <label><b>Nom de la Tâche</b></label>
-            <input type="text" placeholder="Nom de votre tâche" name="nom" />
+            <input type="text" placeholder="Nom de votre tâche" name="Ntache" required="required" />
 
             <label><b>Description</b></label>
-            <input type="text" placeholder="Description" name="desc" />
+            <input type="text" placeholder="Description" name="Tdesc" />
 
             <label><b>date de fin</b></label>
             <input type="date" placeholder="date de fin" name="dateF" />

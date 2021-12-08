@@ -2,16 +2,17 @@
 require_once "../Modele/Tache.php";
 require_once '../Modele/TacheGateway.php';
 
-if (isset($_POST['nom']) && $_POST['desc']) {
+if (isset($_POST['Ntache']) && $_POST['Tdesc']) {
 
     $Tgateway = new TacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
 
-    $nom = isset($_POST['nom']);
-    $desc = isset($_POST['desc']);
+    $nom = htmlspecialchars($_POST['Ntache']);
+    $desc = htmlspecialchars($_POST['Tdesc']);
+    $nom2 = $nom;
 
-    if (isset($_POST['dateF'])) {
-        $date = isset($_POST['dateF']);
-    }
+    // if (isset($_POST['dateF'])) {
+    //     $date = isset($_POST['dateF']);
+    // }
 
     $nbid = 0;
     $idl = 0; // 0 pour public de base
@@ -24,16 +25,19 @@ if (isset($_POST['nom']) && $_POST['desc']) {
 
     //Pour savoir si une tâche avec le même nom existe
     $check = $connect->prepare('SELECT Nom from tache WHERE Nom = ?');
-    $check->execute(array($nom));
+    $check->execute(array($nom2));
     $row = $check->rowCount();
 
-    $id = $Nbrow['IdT'] + 1; // Créer une id pour la tâche que l'on créer
-
+    if ($Nbrow == 0) {
+        $id = 0;
+    } else {
+        $id = $Nbrow + 1; // Créer une id pour la tâche que l'on créer
+    }
     if ($row == 0) {
-        if (strlen($nom) <= 100) {
+        if (strlen($nom) < 100) {
             $tacheCreer = new Tache($id, $nom, $desc, null, $idl);
             $Tgateway->insertTache($tacheCreer);
-            header('Location : CreerTache.php');
-        } else header('Location: CreerTache.php?reg_err=nom)');
-    } else header('Location: CreerTache.php?reg_err=already');
-} else header('Location : CreerTache.php?reg_err=ErreurTache');
+            header('Location:CreerTache.php?reg_err=success');
+        } else header('Location:CreerTache.php?reg_err=nom)');
+    } else header('Location:CreerTache.php?reg_err=already');
+} else header('Location:CreerTache.php?reg_err=ErreurTache');
