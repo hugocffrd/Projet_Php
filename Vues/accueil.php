@@ -7,47 +7,72 @@
 </head>
 
 <body>
+    <div id="container">
+        <button class="bouton" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
+        <button class="bouton" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
+        <button class="bouton" height="100px" onclick=window.location.href='creerListe.html'>Nouvelle liste</button>
+        <div class="listBlock">
 
-<?php
-require_once '../Modele/TacheGateway.php';
-require_once '../Modele/ListeTacheGateway.php';
-$Tgateway = new TacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
-$LTgateway = new ListeTacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+        <nav class="navbar navbar-light navbar-1 white">
 
-$tabFindListeTache[] = $LTgateway->findAll();
-foreach ($tabFindListeTache as $tabL) {
-    foreach ($tabL as $liste) {
-        $tabFindTache=array();
-        if ($liste->getPrivee() == false) {
-            $tabFindTache[] = $Tgateway->findbyIdL($liste->getIdL());
-            print("<br>".$liste->getNom().":<br>");
-            foreach ($tabFindTache as $tabT) {
-                foreach ($tabT as $tache) {
-                    print($tache->getNom() . " " . $tache->getTexte() . " " . $tache->getDateFin() . "<br>");
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="#">Navbar</a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+                    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                </ul>
+                <!-- Links -->
+
+            </div>
+            <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+
+        </div>
+    </div>
+    <?php
+    require_once '../Modele/TacheGateway.php';
+    require_once '../Modele/ListeTacheGateway.php';
+    $Tgateway = new TacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+    $LTgateway = new ListeTacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+
+    $tabFindListeTache[] = $LTgateway->findAll();
+    foreach ($tabFindListeTache as $tabL) {
+        foreach ($tabL as $liste) {
+            $tabFindTache=array();
+            if ($liste->getPrivee() == false) {
+                $tabFindTache[] = $Tgateway->findbyIdL($liste->getIdL());
+                print("<br>".$liste->getNom().":<br>");
+                foreach ($tabFindTache as $tabT) {
+                    foreach ($tabT as $tache) {
+                        print($tache->getNom() . " " . $tache->getTexte() . " " . $tache->getDateFin() . "<br>");
+                    }
                 }
             }
         }
     }
-}
-?>
-    <div id="container">
-        <button class="bouton" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
-        <button class="bouton" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button">Action</button>
-                <button class="dropdown-item" type="button">Another action</button>
-                <button class="dropdown-item" type="button">Something else here</button>
-            </div>
-        </div>
+    ?>
 
-
-    </div>
-
-
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 <style>
     body {
@@ -68,14 +93,20 @@ foreach ($tabFindListeTache as $tabL) {
         width: 15%;
     }
 
-    .dropdown{
+    .navbar.navbar-1 .navbar-toggler-icon {
+        background-image: url('https://mdbcdn.b-cdn.net/img/svg/hamburger6.svg?color=000');
+    }
+    .navbar{
         background-color: aliceblue;
-        margin-top: 20px;
-        width: 50%;
-        padding: 14px 20px ;
         border-radius: 5px;
-        horiz-align: center;
+    }
+
+    .listBlock{
+        background-color: blueviolet;
+        border-radius: 10px;
+        width: 70%;
     }
 </style>
+
 
 </html>

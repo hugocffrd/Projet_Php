@@ -36,7 +36,7 @@
                 case 'mail_lenght':
                 ?>
                     <div class="alert alert-danger">
-                        <strong>Erreur </strong>L'adresse mail fournis est trop longue
+                        <strong>Erreur </strong>L'adresse mail fournie est trop longue
                     </div>
                 <?php
                     break;
@@ -82,7 +82,7 @@
             <label><b>Mot de passe</b></label>
             <input type="password" placeholder="Entrer le mot de passe" name="password" required>
             <label><b>Confirmer le mot de passe</b></label>
-            <input type="password" placeholder="Retapper le mot de passe" name="password_retype" required>
+            <input type="password" placeholder="Resaisir le mot de passe" name="password_retype" required>
             <input type="submit" id='submit' value="S'inscrire">
             <p class="text-center"><a href="connexion.php">Se connecter</a></p>
 
