@@ -8,10 +8,10 @@ if (isset($_POST['Ntache'])) {
 
     $nom = htmlspecialchars($_POST['Ntache']);
     $desc = htmlspecialchars($_POST['Tdesc']);
+    if (htmlspecialchars($_POST['dateF'])) {
+        $date = htmlspecialchars($_POST['dateF']);
+    } else $date = null;
 
-    // if (isset($_POST['dateF'])) {
-    //     $date = isset($_POST['dateF']);
-    // }
 
     $idl = 0; // 0 pour public de base
     $nbid = 0;
@@ -31,7 +31,7 @@ if (isset($_POST['Ntache'])) {
 
 
     if (strlen($nom) < 100) {
-        $tacheCreer = new Tache($id, $nom, $desc, null, $idl);
+        $tacheCreer = new Tache($id, $nom, $desc, $date, $idl);
         $Tgateway->insertTache($tacheCreer);
         header('Location:CreerTache.php?reg_err=success');
     } else header('Location:CreerTache.php?reg_err=nom');
