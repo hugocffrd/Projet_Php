@@ -8,7 +8,6 @@
 
 <body>
     <div id="container">
-        <!-- zone de connexion -->
         <?php
         if (isset($_GET['reg_err'])) {
             $err = htmlspecialchars($_GET['reg_err']);
@@ -16,15 +15,27 @@
             switch ($err) {
                 case 'success':
         ?>
-        <div class="alert alert-success">
-            <strong>Succès </strong>Tâche créer !
-        </div>
+                    <div class="alert alert-success">
+                        <strong>Succès </strong>Tâche créer !
+                    </div>
+                <?php
+                    break;
+                case 'nom':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Echec </strong>Le nom de votre tâche est trop long !
+                    </div>
+                <?php
+                    break;
+                case 'ErreurTache':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Echec </strong>Veuillez renseigner un nom de Tâche !
+                    </div>
         <?php
-        break;
-        case 'password':
-        ?>        
-
-
+            }
+        }
+        ?>
         <form action="creerTache_verif.php" method="POST">
             <h1>Tâche</h1>
 
