@@ -26,9 +26,11 @@
                             if ($pwd == $pwd_retype) {
                                 // $password=hash('sha256',$password);
                                 // $ip=$_SERVER['REMOTE_ADDR'];
+
                                 $utilisateur = new Utilisateur($mail, $nom, $prenom, $pwd);
                                 $Ugateway = new UtilisateurGateway("mysql:host=localhost;dbname=dbroot", "root", "");
                                 $Ugateway->insertUtilisateur($utilisateur);
+
                                 // $insert = $connect->prepare('INSERT INTO utilisateur(Mail, Nom, Prenom,Pwd) VALUES(:mail, :nom, :prenom, :pwd)');
                                 // $insert->execute(array(
                                 //     'mail' => $mail,
@@ -37,13 +39,13 @@
                                 //     'pwd' => $pwd
                                 // ));
 
-                                header('Location :creerUtilisateur.php?reg_err=success');
+                                header('Location:creerUtilisateur.php?reg_err=sucess');
                             } else header('Location:creerUtilisateur.php?reg_err=password');
                         } else header('Location:creerUtilisateur.php?reg_err=mail');
                     } else header('Location:creerUtilisateur.php?reg_err=mail_lenght');
                 } else header('Location:creerUtilisateur.php?reg_err=prenom_Lenght');
             } else header('Location:creerUtilisateur.php?reg_err=nom_Lenght');
-        } else header('Location: creerUtilisateur.php?reg_err=already');
+        } else header('Location:creerUtilisateur.php?reg_err=already');
     }
 
     ?>

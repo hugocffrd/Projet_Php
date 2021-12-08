@@ -12,9 +12,9 @@
             $err = htmlspecialchars($_GET['reg_err']);
 
             switch ($err) {
-                case 'success':
+                case 'sucess':
         ?>
-                    <div class="alert alert-sucess">
+                    <div class="alert alert-success">
                         <strong>Succès </strong>Inscription réussie !
                     </div>
                 <?php
