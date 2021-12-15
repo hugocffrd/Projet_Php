@@ -8,8 +8,8 @@ class ListeTacheGateway
     private $connect;
 
 
-    public function __construct($dsn,$user,$pwd){
-        $this->connect=new Connection($dsn,$user,$pwd);
+    public function __construct($con){
+        $this->connect=$con;
     }
 
     public	function insertListe(ListeTache $listeTache){

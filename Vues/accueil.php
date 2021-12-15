@@ -45,14 +45,23 @@
         </nav>
         <!--/.Navbar-->
 
+            <select name="color" id="color">
+                <option value="">--- Choose a color ---</option>
+                <option value="red">✔️</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+            </select>
+
         </div>
     </div>
     <?php
+    require_once '../Connections/ConnectBDD.php';
     require_once '../Modele/TacheGateway.php';
     require_once '../Modele/ListeTacheGateway.php';
-    $Tgateway = new TacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
-    $LTgateway = new ListeTacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
 
+    $con= new ConnectBDD();
+    $Tgateway = new TacheGateway($con->getConnect());
+    $LTgateway = new ListeTacheGateway($con->getConnect());
     $tabFindListeTache[] = $LTgateway->findAll();
     foreach ($tabFindListeTache as $tabL) {
         foreach ($tabL as $liste) {
