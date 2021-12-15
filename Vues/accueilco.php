@@ -1,14 +1,18 @@
 <?php
 session_start();
-require '../Modele/Connection.php';
+require_once '../Connections/ConnectBDD.php';
+require_once '../Modele/TacheGateway.php';
+require_once '../Modele/ListeTacheGateway.php';
+
+
 // si la session existe pas soit si l'on est pas connecté on redirige
 if (!isset($_SESSION['user'])) {
     header('Location:connexion.php');
     die();
 }
 
+$con= new ConnectBDD();
 // On récupere les données de l'utilisateur
-$bdd = new Connection("mysql:host=localhost;dbname=dbroot", "root", "");
 $req = $bdd->prepare('SELECT * FROM utilisateur WHERE Nom = ?');
 $req->execute(array($_SESSION['user']));
 $data = $req->fetch();
@@ -34,8 +38,36 @@ $data = $req->fetch();
         <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
     </div>
 
+    <?php
+    require_once '../Modele/TacheGateway.php';
+    require_once '../Modele/ListeTacheGateway.php';
+    $Tgateway = new TacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+    $LTgateway = new ListeTacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+    $tabFindListeTache[] = $LTgateway->findAll();
+    ?>
+    <div class="text-center">
+        <select class="form-select form-select-lg mb-3">
+            <option selected="selected">Sélectionner une liste</option>
+            <?php
 
+
+            // Parcourir le tableau des langues
+            foreach ($tabFindListeTache as $tabL) {
+                foreach ($tabL as $liste) {
+                    if ($liste->getPrivee() == true) {
+                        if ($liste->getMailU() == $data['Mail']) {
+            ?>
+                            <option value="<?php echo $liste->getNom(); ?>"><?php echo $liste->getNom(); ?></option>
+            <?php
+                        }
+                    }
+                }
+            }
+            ?>
+        </select>
+    </div>
 </body>
+
 <style>
     body {
         background: #90cbff;
