@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../Connections/ConnectBDD.php';
+require_once '../ConnectBDD/ConnectBDD.php';
 require_once '../Modele/TacheGateway.php';
 require_once '../Modele/ListeTacheGateway.php';
 

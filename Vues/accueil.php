@@ -10,52 +10,15 @@
     <div id="container">
         <button class="bouton" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
         <button class="bouton" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
-        <button class="bouton" height="100px" onclick=window.location.href='creerListe.html'>Nouvelle liste</button>
+        <button class="bouton" height="100px" onclick=window.location.href='creerListe.php'>Nouvelle liste</button>
         <div class="listBlock">
 
-        <nav class="navbar navbar-light navbar-1 white">
 
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="#">Navbar</a>
-
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
-                    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent15">
-
-                <!-- Links -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                </ul>
-                <!-- Links -->
-
-            </div>
-            <!-- Collapsible content -->
-
-        </nav>
-        <!--/.Navbar-->
-
-            <select name="color" id="color">
-                <option value="">--- Choose a color ---</option>
-                <option value="red">✔️</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
-            </select>
 
         </div>
     </div>
     <?php
-    require_once '../Connections/ConnectBDD.php';
+    require_once '../ConnectBDD/ConnectBDD.php';
     require_once '../Modele/TacheGateway.php';
     require_once '../Modele/ListeTacheGateway.php';
 
@@ -63,21 +26,51 @@
     $Tgateway = new TacheGateway($con->getConnect());
     $LTgateway = new ListeTacheGateway($con->getConnect());
     $tabFindListeTache[] = $LTgateway->findAll();
-    foreach ($tabFindListeTache as $tabL) {
-        foreach ($tabL as $liste) {
-            $tabFindTache=array();
-            if ($liste->getPrivee() == false) {
-                $tabFindTache[] = $Tgateway->findbyIdL($liste->getIdL());
-                print("<br>".$liste->getNom().":<br>");
-                foreach ($tabFindTache as $tabT) {
-                    foreach ($tabT as $tache) {
-                        print($tache->getNom() . " " . $tache->getTexte() . " " . $tache->getDateFin() . "<br>");
-                    }
-                }
-            }
-        }
+
+    ?>
+      <div class="text-center">
+        <select class="form-select form-select-lg mb-3" id="listSelect">
+            <option selected="selected">Selection Publiques</option>
+            <?php
+
+
+            // Parcourir le tableau des listes
+            foreach ($tabFindListeTache as $tabL) {
+                foreach ($tabL as $liste) {
+                    if ($liste->getPrivee() == false) {
+
+            ?>
+    <option value="<?php echo $liste->getNom(); ?>">
+        <?php echo $liste->getNom(); ?>
+    </option>
+    <?php
+    }
+    }
     }
     ?>
+
+    </select>
+
+          <select class="form-select" multiple aria-label="multiple select example" id="listSelect">
+              <option selected="selected">Tâches</option>
+              <?php
+
+              $tabFindTache[] = $Tgateway->findByIdL($liste->getIdl());
+              // Parcourir le tableau des taches
+              foreach ($tabFindTache as $tabT) {
+                  foreach ($tabT as $tache) {
+
+                      ?>
+                      <option value="<?php echo $tache->getNom(); ?>">
+                          <?php echo $tache->getNom(); ?>
+                      </option>
+                      <?php
+                  }
+
+              }
+              ?>
+          </select>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -101,19 +94,11 @@
         cursor: pointer;
         width: 15%;
     }
-
-    .navbar.navbar-1 .navbar-toggler-icon {
-        background-image: url('https://mdbcdn.b-cdn.net/img/svg/hamburger6.svg?color=000');
-    }
-    .navbar{
-        background-color: aliceblue;
-        border-radius: 5px;
-    }
-
-    .listBlock{
-        background-color: blueviolet;
+    #listSelect{
         border-radius: 10px;
-        width: 70%;
+        background-color: lightgray;
+        margin-top: 20px;
+        width: 15%;
     }
 </style>
 
