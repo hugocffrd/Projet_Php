@@ -10,14 +10,14 @@ if (!isset($_SESSION['user'])) {
     header('Location:connexion.php');
     die();
 }
-
-$con= new ConnectBDD();
+$con = new ConnectBDD();
+$connect = $con->getConnect();
 // On récupere les données de l'utilisateur
-$req = $bdd->prepare('SELECT * FROM utilisateur WHERE Nom = ?');
+$req = $connect->prepare('SELECT * FROM utilisateur WHERE Nom = ?');
 $req->execute(array($_SESSION['user']));
 $data = $req->fetch();
-
 ?>
+
 <!doctype html>
 
 <head>

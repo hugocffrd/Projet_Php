@@ -1,5 +1,5 @@
 <<?php
-    require '../Modele/Connection.php';
+    require '../ConnectBDD/ConnectBDD.php';
     require_once "../Modele/Utilisateur.php";
     require_once "../Modele/UtilisateurGateway.php";
 
@@ -10,7 +10,8 @@
         $pwd = htmlspecialchars($_POST['password']);
         $pwd_retype = htmlspecialchars($_POST['password_retype']);
         $mail = strtolower($mail); // on transforme toutes les lettres majuscule en minuscule pour éviter que Foo@gmail.com et foo@gmail.com soient deux compte différents ..
-        $connect = new Connection("mysql:host=localhost;dbname=dbroot", "root", "");
+        $con = new ConnectBDD();
+        $connect = $con->getConnect();
 
 
         $check = $connect->prepare('SELECT Mail,Nom ,Prenom, Pwd from utilisateur where Mail = ?');
@@ -28,7 +29,7 @@
                                 // $ip=$_SERVER['REMOTE_ADDR'];
 
                                 $utilisateur = new Utilisateur($mail, $nom, $prenom, $pwd);
-                                $Ugateway = new UtilisateurGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+                                $Ugateway = new UtilisateurGateway($connect);
                                 $Ugateway->insertUtilisateur($utilisateur);
 
                                 // $insert = $connect->prepare('INSERT INTO utilisateur(Mail, Nom, Prenom,Pwd) VALUES(:mail, :nom, :prenom, :pwd)');

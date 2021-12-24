@@ -1,12 +1,13 @@
 <?php
 session_start();
-require '../Modele/Connection.php';
+require_once '../ConnectBDD/ConnectBDD.php';
 
 if (isset($_POST['mail']) && isset($_POST['password'])) {
 
     $mail = htmlspecialchars($_POST['mail']);
     $password = htmlspecialchars($_POST['password']);
-    $connect = new Connection("mysql:host=localhost;dbname=dbroot", "root", "");
+    $con = new ConnectBDD();
+    $connect = $con->getConnect();
 
     $check = $connect->prepare('SELECT Nom , Mail, Pwd from utilisateur where Mail = ?');
     $check->execute(array($mail));

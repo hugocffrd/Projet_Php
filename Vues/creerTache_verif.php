@@ -1,11 +1,14 @@
 <?php
+require_once '../ConnectBDD/ConnectBDD.php';
 require_once "../Modele/Tache.php";
 require_once '../Modele/TacheGateway.php';
 
 if (isset($_POST['Ntache'])) {
 
-    $Tgateway = new TacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+    $con = new ConnectBDD();
+    $connect = $con->getConnect();
 
+    $Tgateway = new TacheGateway($connect);
     $nom = htmlspecialchars($_POST['Ntache']);
     $desc = htmlspecialchars($_POST['Tdesc']);
     if (htmlspecialchars($_POST['dateF'])) {
@@ -17,7 +20,6 @@ if (isset($_POST['Ntache'])) {
     $nbid = 0;
 
     //Pour connaitre le nombre de tâches totales
-    $connect = new Connection("mysql:host=localhost;dbname=dbroot", "root", "");
     $check = $connect->prepare('SELECT IdT from tache');
     $check->execute(array($nbid));
     $Nbrow = $check->rowCount();
