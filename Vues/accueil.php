@@ -3,102 +3,148 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" media="screen"
+          type="text/css"/>
 </head>
 
 <body>
-    <div id="container">
-        <button class="bouton" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
-        <button class="bouton" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
-        <button class="bouton" height="100px" onclick=window.location.href='creerListe.php'>Nouvelle liste</button>
-        <div class="listBlock">
+
+<H1 id="titlePublic"> Page publique </H1>
+<div id="container">
+    <button class="bouton" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
+    <button class="bouton" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
+    <button class="bouton" height="100px" onclick=window.location.href='creerListe.php'>Ajouter liste</button>
+</div>
+
+<?php
+require_once '../ConnectBDD/ConnectBDD.php';
+require_once '../Modele/TacheGateway.php';
+require_once '../Modele/ListeTacheGateway.php';
+
+$con = new ConnectBDD();
+$Tgateway = new TacheGateway($con->getConnect());
+$LTgateway = new ListeTacheGateway($con->getConnect());
+$tabFindListeTache[] = $LTgateway->findAll();
+
+?>
+<div class="text-center" id="divLists">
 
 
-
-        </div>
-    </div>
     <?php
-    require_once '../ConnectBDD/ConnectBDD.php';
-    require_once '../Modele/TacheGateway.php';
-    require_once '../Modele/ListeTacheGateway.php';
+    foreach ($tabFindListeTache
 
-    $con= new ConnectBDD();
-    $Tgateway = new TacheGateway($con->getConnect());
-    $LTgateway = new ListeTacheGateway($con->getConnect());
-    $tabFindListeTache[] = $LTgateway->findAll();
+             as $tabL) {
+        foreach ($tabL
 
-    ?>
-      <div class="text-center">
-        <select class="form-select form-select-lg mb-3" id="listSelect">
-            <option selected="selected">Selection Publiques</option>
-            <?php
+                 as $liste) {
+            if ($liste->getPrivee() == false) {
+
+                ?>
+                <div id="containerList">
+                <H2> <?php echo $liste->getNom(); ?></H2>
+                <div class="btn-group-vertical">
+                <?php
+                $tabFindTache[] = $Tgateway->findByIdL($liste->getIdl());
+
+                foreach ($tabFindTache as $tabT) {
+                    foreach ($tabT as $tache) {
 
 
-            // Parcourir le tableau des listes
-            foreach ($tabFindListeTache as $tabL) {
-                foreach ($tabL as $liste) {
-                    if ($liste->getPrivee() == false) {
+                        if ($tache->getDateFin()<mktime(0, 0, 0, date("mm")  , date("dd")+1, date("YYYY"))){
+                            ?>
+                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache' id="BLate">
+                        <?php
+                            echo $tache->getNom();
+                        }
+                        else{
+                            ?>
+                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache' id="BOk">
+                                <?php
+                            echo $tache->getNom();
+                        }
+                    }
+                } ?>
+
+                </button>
+
+                <?php
+            }
+
 
             ?>
-    <option value="<?php echo $liste->getNom(); ?>">
-        <?php echo $liste->getNom(); ?>
-    </option>
-    <?php
-    }
-    }
+
+            </div>
+            <button type="button" class="btn btn-secondary" onclick=window.location.href='creerTache.php' id="addT" > + </button>
+            </div>
+            <?php
+        }
     }
     ?>
 
-    </select>
+</div>
 
-          <select class="form-select" multiple aria-label="multiple select example" id="listSelect">
-              <option selected="selected">Tâches</option>
-              <?php
-
-              $tabFindTache[] = $Tgateway->findByIdL($liste->getIdl());
-              // Parcourir le tableau des taches
-              foreach ($tabFindTache as $tabT) {
-                  foreach ($tabT as $tache) {
-
-                      ?>
-                      <option value="<?php echo $tache->getNom(); ?>">
-                          <?php echo $tache->getNom(); ?>
-                      </option>
-                      <?php
-                  }
-
-              }
-              ?>
-          </select>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 <style>
     body {
         background: #90cbff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
+
     #container {
-        width: 1000px;
-        margin: 0 auto;
         margin-top: 5%;
     }
-    .bouton{
+
+    .bouton {
         background-color: #EEB241;
         color: white;
         padding: 14px 20px;
-        margin-left: 10px;
         border: none;
+        border-radius: 10px;
         cursor: pointer;
         width: 15%;
     }
-    #listSelect{
-        border-radius: 10px;
+
+
+
+    #titlePublic {
+        text-align: center;
+    }
+
+
+    #containerList {
         background-color: lightgray;
-        margin-top: 20px;
-        width: 15%;
+        border-radius: 10px;
+        width: 40%;
+        margin: 20px;
+
+    }
+
+    .btn-group-vertical {
+        width: 100%;
+    }
+
+    #BLate{
+        color: lightsalmon;
+    }
+    #BOk{
+        color:white;
+    }
+
+    #addT{
+        background-color: #ffffff;
+        color:  black;
+        margin: 2px;
     }
 </style>
 
