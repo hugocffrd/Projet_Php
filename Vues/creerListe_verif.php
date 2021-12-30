@@ -1,17 +1,19 @@
 <?php
+require_once '../ConnectBDD/ConnectBDD.php';
 require_once "../Modele/ListeTache.php";
 require_once '../Modele/ListeTacheGateway.php';
 
+
 if (isset($_POST['nom'])){
 
-    $LTgateway = new ListeTacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
 
-    $nom = isset($_POST['nom']);
-
+    $con = new ConnectBDD();
+    $connect = $con->getConnect();
+    $LTgateway = new ListeTacheGateway($connect);
+    $nom = htmlspecialchars (($_POST['nom']));
     $nbid = 0;
 
     //Pour connaitre le nombre de listes totales
-    $connect = new Connection("mysql:host=localhost;dbname=dbroot", "root", "");
     $check = $connect->prepare('SELECT IdL from listetache');
     $check->execute(array($nbid));
     $Nbrow = $check->rowCount();
@@ -32,8 +34,8 @@ if (isset($_POST['nom'])){
         if (strlen($nom) <= 100) {
             $NewListe = new ListeTache($id, $nom, 0,NULL );
             $LTgateway->insertListe($NewListe);
-            header('Location: creerListe.php');
-        } else header('Location: creerListe.php?reg_err=nom)');
-    } else header('Location: creerListe.php?reg_err=already');
-} else header('Location: CreerListe.php?reg_err=ErreurListe');
+            header('Location:creerListe.php');
+        } else header('Location:creerListe.php?reg_err=nom)');
+    } else header('Location:creerListe.php?reg_err=already');
+} else header('Location:creerListe.php?reg_err=ErreurListe');
 

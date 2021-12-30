@@ -45,7 +45,10 @@ $tabFindListeTache[] = $LTgateway->findAll();
                 <div id="containerList">
                 <div id="headerlist">
                     <H2> <?php echo $liste->getNom(); ?></H2>
-                    <button type="button" class="btn" id="suppList" onclick=>
+                    <form action="sppListe.php" method="POST">
+                    <input type="hidden" value="<?php $liste->getIdl() ?>" name="idListe"/>
+                        <button type="button" class="btn" id="suppList"  onclick=window.location.href='suppListe.php'); > X </button>
+                    </form>
                 </div>
 
 
@@ -113,6 +116,8 @@ $tabFindListeTache[] = $LTgateway->findAll();
 
     #container {
         margin-top: 5%;
+        display: flex;
+        justify-content: center;
     }
 
     .bouton {
@@ -166,6 +171,7 @@ $tabFindListeTache[] = $LTgateway->findAll();
     #suppList {
         margin: 5px;
         background-color: firebrick;
+
 
     }
 </style>

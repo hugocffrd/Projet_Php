@@ -22,6 +22,12 @@ class TacheGateway
             ":IdL"=>array($tache->getIdL(),PDO::PARAM_STR)));
     }
 
+    public function suppTache (Tache $tache){
+        $query="DELETE FROM Tache where IdT=:IdT";
+        $this->connect->executeQuery($query,array(
+            ":IdT"=>array($tache->getIdT(),PDO::PARAM_STR)));
+    }
+
     public function findById ($IdT):array{
 
         $query="SELECT * FROM tache WHERE IdT=:IdT";
