@@ -21,6 +21,12 @@ class ListeTacheGateway
             ":mailU"=>array($listeTache->getMailU(),PDO::PARAM_STR)));
     }
 
+    public function suppListe(ListeTache $listeTache){
+        $query="DELETE FROM ListeTache where IdL=:IdL";
+        $this->connect->executeQuery($query,array(
+            ":IdL"=>array($listeTache->getIdL(),PDO::PARAM_STR)));
+    }
+
     public function findById ($IdL):array{
 
         $query="SELECT * FROM ListeTache WHERE IdL=:IdL";
@@ -39,6 +45,7 @@ class ListeTacheGateway
         $query="SELECT * FROM ListeTache";
         $this->connect->executeQuery($query,array());
         $results=$this->connect->getResults();
+        $tabListeTache=array();
         foreach ($results as $row){
             $tabListeTache[]=new ListeTache($row["IdL"],$row["Nom"],$row["privee"],$row["mailU"]);
         }

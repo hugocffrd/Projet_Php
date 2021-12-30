@@ -16,7 +16,7 @@
                 case 'success':
         ?>
                     <div class="alert alert-success">
-                        <strong>Succès </strong>Tâche créer !
+                        <strong>Succès </strong>Tâche créée !
                     </div>
                 <?php
                     break;
