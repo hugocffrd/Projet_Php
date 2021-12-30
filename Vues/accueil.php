@@ -26,10 +26,6 @@ $Tgateway = new TacheGateway($con->getConnect());
 $LTgateway = new ListeTacheGateway($con->getConnect());
 $tabFindListeTache[] = $LTgateway->findAll();
 
-function php_func(){
-    echo "Suppression";
-
-}
 ?>
 <div class="text-center" id="divLists">
 
@@ -49,7 +45,10 @@ function php_func(){
                 <div id="containerList">
                 <div id="headerlist">
                     <H2> <?php echo $liste->getNom(); ?></H2>
-                    <button type="button" class="btn" id="suppList"  onclick=> X </button>
+                    <form action="sppListe.php" method="POST">
+                    <input type="hidden" value="<?php $liste->getIdl() ?>" name="idListe"/>
+                        <button type="button" class="btn" id="suppList"  onclick=window.location.href='suppListe.php'); > X </button>
+                    </form>
                 </div>
 
 
@@ -172,6 +171,7 @@ function php_func(){
     #suppList {
         margin: 5px;
         background-color: firebrick;
+
 
     }
 </style>
