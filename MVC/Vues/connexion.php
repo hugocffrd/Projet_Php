@@ -41,7 +41,7 @@
             }
         }
         ?>
-        <form action="Authentification.php" method="post">
+        <form action="../Modele/Authentification.php" method="post">
             <h1>Connexion</h1>
 
             <label><b>Adresse email</b></label>

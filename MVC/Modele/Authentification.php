@@ -20,8 +20,8 @@ if (isset($_POST['mail']) && isset($_POST['password'])) {
 
             if ($password  == $data['Pwd']) {
                 $_SESSION['user'] = $data['Nom'];
-                header('Location:accueilco.php');
-            } else header('Location:connexion.php?login_err=password');
-        } else header('Location:connexion.php?login_err=mail');
-    } else header('Location:connexion.php?login_err=already');
-} else header('Location:connexion.php');
+                header('Location:../Vues/accueilco.php');
+            } else header('Location:../Vues/connexion.php?login_err=password');
+        } else header('Location:../Vues/connexion.php?login_err=mail');
+    } else header('Location:../Vues/connexion.php?login_err=already');
+} else header('Location:../Vues/connexion.php');
