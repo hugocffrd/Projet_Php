@@ -27,12 +27,11 @@ class ListeTache
         return $this->mailU;
     }
 
-    public function __construct($IdL,$Nom,$privee,$mailU){
-        $this->IdL=$IdL;
-        $this->Nom=$Nom;
-        $this->privee=$privee;
-        $this->mailU=$mailU;
+    public function __construct($IdL, $Nom, $privee, $mailU)
+    {
+        $this->IdL = $IdL;
+        $this->Nom = $Nom;
+        $this->privee = $privee;
+        $this->mailU = $mailU;
     }
-
-
 }
