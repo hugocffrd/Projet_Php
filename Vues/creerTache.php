@@ -7,6 +7,13 @@
 </head>
 
 <body>
+<?php
+if (isset($_GET['action'])){
+    $IdL=$_GET['action'];
+}
+
+?>
+
     <div id="container">
         <?php
         if (isset($_GET['reg_err'])) {
@@ -36,7 +43,7 @@
             }
         }
         ?>
-        <form action="creerTache_verif.php" method="POST">
+        <form action="creerTache_verif.php?action=<?php echo $IdL?>" method="POST">
             <h1>Tâche</h1>
 
             <label><b>Nom de la Tâche</b></label>
