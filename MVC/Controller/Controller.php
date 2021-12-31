@@ -1,13 +1,13 @@
 <?php
 function accueil()
 {
-    require "Vues/Accueil.php";
+    require_once "Vues/Accueil.php";
 }
 function connexion()
 {
-    require "Vues/Connexion.php";
+    require_once "Vues/Connexion.php";
 }
 function erreur($msgErreur)
 {
-    require 'vueErreur.php';
+    require_once 'vueErreur.php';
 }

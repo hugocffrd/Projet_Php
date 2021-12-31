@@ -2,25 +2,23 @@
 require "Controller/Controller.php";
 
 accueil();
+$action = $_GET['action'];
 
-try {
-    if (isset($_GET["action"])) {
-        if ($_GET["action"] == "connection") {
+switch ($action) {
+    case 'connection':
 ?>
-            <meta http-equiv="refresh" content="0;url=Vues/connexion.php">
-        <?php
-        }
-        if ($_GET["action"] == "inscription") {
-        ?>
-            <meta http-equiv="refresh" content="0;url=Vues/creerUtilisateur .php">
-        <?php
-        }
-        if ($_GET["action"] == "creerListe") {
-        ?>
-            <meta http-equiv="refresh" content="0;url=Vues/creerListe.php">
+        <meta http-equiv="refresh" content="0;url=Vues/connexion.php">
+    <?php
+        break;
+
+    case 'inscription':
+    ?>
+        <meta http-equiv="refresh" content="0;url=Vues/creerUtilisateur.php">
+    <?php
+        break;
+
+    case 'creerListe':
+    ?>
+        <meta http-equiv="refresh" content="0;url=Vues/creerListe.php">
 <?php
-        }
-    }
-} catch (Exception $e) {
-    erreur($e->getMessage());
 }
