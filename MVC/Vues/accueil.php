@@ -11,7 +11,6 @@
     <H1 id="titlePublic"> Page publique </H1>
     <div id="container">
         <button class="bouton" height="100px" onclick=window.location.href='index.php?action=connection'>Connexion</button>
-
         <button class="bouton" height="100px" onclick=window.location.href='index.php?action=inscription'>Inscription</button>
         <button class="bouton" height="100px" onclick=window.location.href='index.php?action=creerListe'>Ajouter liste</button>
     </div>
@@ -43,10 +42,11 @@
 
         ?>
                     <div id="containerList">
-                        <div id="headerlist">
-                            <H2> <?php echo $liste->getNom(); ?></H2>
-                            <button type="button" class="btn" id="suppList" onclick=>
-                        </div>
+                        <H2> <?php echo $liste->getNom(); ?></H2>
+                        <input type="hidden" action="sppListe.php" method="POST" value=<?php $liste->getIdl() ?> name="idListe" />
+                        <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php ? action=<?php $liste->getIdl() ?>'> X </button>
+
+                        </form>
 
 
                         <div class="btn-group-vertical">
@@ -107,6 +107,10 @@
 
     #container {
         margin-top: 5%;
+        margin-left: 50px;
+        margin-right: 50px;
+        justify-content: center;
+        text-align: center;
     }
 
     .bouton {
@@ -126,6 +130,8 @@
 
 
     #containerList {
+        justify-content: center;
+        text-align: center;
         background-color: lightgray;
         border-radius: 10px;
         width: 40%;
@@ -151,15 +157,12 @@
         margin: 2px;
     }
 
-    #headerlist {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+
 
     #suppList {
         margin: 5px;
         background-color: firebrick;
+
 
     }
 </style>
