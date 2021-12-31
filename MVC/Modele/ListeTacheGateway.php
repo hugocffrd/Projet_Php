@@ -27,6 +27,7 @@ class ListeTacheGateway
         $this->connect->executeQuery($query,array(
             ":IdL"=>array($IdL,PDO::PARAM_STR)));
         $results=$this->connect->getResults();
+        $tabListeTache=array();
         foreach ($results as $row){
             $tabListeTache[]=new ListeTache($row["IdL"],$row["Nom"],$row["privee"],$row["mailU"]);
         }
@@ -39,6 +40,7 @@ class ListeTacheGateway
         $query="SELECT * FROM ListeTache";
         $this->connect->executeQuery($query,array());
         $results=$this->connect->getResults();
+        $tabListeTache=array();
         foreach ($results as $row){
             $tabListeTache[]=new ListeTache($row["IdL"],$row["Nom"],$row["privee"],$row["mailU"]);
         }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" media="screen"
           type="text/css"/>
+
 </head>
 
 <body>
@@ -38,19 +38,15 @@ $tabFindListeTache[] = $LTgateway->findAll();
 
                  as $liste) {
             if ($liste->getPrivee() == false) {
-                $tabFindTache[] = $Tgateway->findByIdL($liste->getIdl());
+                $tabFindTache[] = $Tgateway->findByIdL($liste->getIdL());
 
 
                 ?>
                 <div id="containerList">
                 <div id="headerlist">
-                    <H2> <?php echo $liste->getNom(); ?></H2>
-                    <input type="hidden" action="sppListe.php" method="POST" value=<?php $liste->getIdl()?> name="idListe"/>
-                        <button  type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php ? action=<?php $liste->getIdl() ?>'> X </button>
-
-                    </form>
+                    <H2> <?php  echo $liste->getNom()?></H2>
+                    <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL()?>' name="idl"> X </button>
                 </div>
-
 
                 <div class="btn-group-vertical">
                 <?php
@@ -171,8 +167,6 @@ $tabFindListeTache[] = $LTgateway->findAll();
     #suppList {
         margin: 5px;
         background-color: firebrick;
-
-
     }
 </style>
 
