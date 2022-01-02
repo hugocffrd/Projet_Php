@@ -11,9 +11,9 @@
 
 <H1 id="titlePublic"> Page publique </H1>
 <div id="container">
-    <button class="bouton" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
-    <button class="bouton" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
-    <button class="bouton" height="100px" onclick=window.location.href='creerListe.php'>Ajouter liste</button>
+    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
+    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
+    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListe.php'>Ajouter liste</button>
 </div>
 
 <?php
@@ -81,7 +81,7 @@ $tabFindListeTache[] = $LTgateway->findAll();
             ?>
 
             </div>
-            <button type="button" class="btn btn-secondary" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL()?>' id="addT"> +
+            <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL()?>'> + tâche
             </button>
             </div>
             <?php
@@ -145,18 +145,16 @@ $tabFindListeTache[] = $LTgateway->findAll();
         width: 100%;
     }
 
+    .boutonAdd{
+        margin: 5px;
+    }
+
     #BLate {
         color: lightsalmon;
     }
 
     #BOk {
         color: white;
-    }
-
-    #addT {
-        background-color: antiquewhite;
-        color: black;
-        margin: 2px;
     }
 
     #headerlist {

@@ -27,7 +27,7 @@
             <div id="headertache">
                 <H1> <?php echo $tache->getNom(); ?></H1>
                 <button type="button" class="btn" id="suppTache"
-                        onclick=window.location.href='suppListe.php?action=<?php echo $tache->getIdT() ?>'> X
+                        onclick=window.location.href='suppTache.php?action=<?php echo $tache->getIdT() ?>'> X
                 </button>
             </div>
             <?php
