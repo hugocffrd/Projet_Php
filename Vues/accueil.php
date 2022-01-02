@@ -57,12 +57,12 @@ $tabFindListeTache[] = $LTgateway->findAll();
 
                         if ($tache->getDateFin() < date('Y-m-d')) {
                             ?>
-                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache' id="BLate">
+                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT()?>' id="BLate">
                             <?php
                             echo $tache->getNom();
                         } else {
                             ?>
-                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache' id="BOk">
+                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT()?>' id="BOk">
                             <?php
                             echo $tache->getNom();
 
