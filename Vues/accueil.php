@@ -13,7 +13,7 @@
 <div id="container">
     <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
     <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
-    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListe.php'>Ajouter liste</button>
+    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListe.php'>+ liste</button>
 </div>
 
 <?php
@@ -125,6 +125,7 @@ $tabFindListeTache[] = $LTgateway->findAll();
         border-radius: 10px;
         cursor: pointer;
         width: 15%;
+        margin:2px;
     }
 
 

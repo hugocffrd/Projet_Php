@@ -9,37 +9,37 @@
 <body>
 <div id="container">
     <?php
-        if (isset($_GET['reg_err'])) {
-            $err = htmlspecialchars($_GET['reg_err']);
+    if (isset($_GET['reg_err'])) {
+        $err = htmlspecialchars($_GET['reg_err']);
 
-            switch ($err) {
-                case 'success':
-        ?>
-    <div class="alert alert-success">
-        <strong>Succès </strong>Liste créée !
-    </div>
-    <?php
-                    break;
-                case 'nom':
+        switch ($err) {
+            case 'success':
                 ?>
-    <div class="alert alert-danger">
-        <strong>Echec </strong>Le nom de votre liste est trop long !
-    </div>
-    <?php
-                    break;
-                case 'ErreurListe':
+                <div class="alert alert-success">
+                    <strong>Succès </strong>Liste créée !
+                </div>
+                <?php
+                break;
+            case 'nom':
                 ?>
-    <div class="alert alert-danger">
-        <strong>Echec </strong>Veuillez renseigner un nom de liste!
-    </div>
-    <?php
-            }
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Le nom de votre liste est trop long !
+                </div>
+                <?php
+                break;
+            case 'ErreurListe':
+                ?>
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Veuillez renseigner un nom de liste!
+                </div>
+            <?php
         }
-        ?>
+    }
+    ?>
 
 
 
-    <form action="creerListe_verif.php" method="POST">
+    <form action="creerListePrivee_verif.php" method="POST">
         <h1>Liste de tâches</h1>
 
         <label><b>Nom de la liste</b></label>
