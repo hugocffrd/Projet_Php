@@ -7,60 +7,54 @@
 </head>
 
 <body>
-    <?php
-    if (isset($_GET['action'])) {
-        $IdL = $_GET['action'];
-    }
+<?php
+if (isset($_GET['action'])){
+    $Mail=$_GET['action'];
+}
 
+?>
+<div id="container">
+    <?php
+    if (isset($_GET['reg_err'])) {
+        $err = htmlspecialchars($_GET['reg_err']);
+
+        switch ($err) {
+            case 'success':
+                ?>
+                <div class="alert alert-success">
+                    <strong>Succès </strong>Liste créée !
+                </div>
+                <?php
+                break;
+            case 'nom':
+                ?>
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Le nom de votre liste est trop long !
+                </div>
+                <?php
+                break;
+            case 'ErreurListe':
+                ?>
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Veuillez renseigner un nom de liste!
+                </div>
+            <?php
+        }
+    }
     ?>
 
-    <div id="container">
-        <?php
-        if (isset($_GET['reg_err'])) {
-            $err = htmlspecialchars($_GET['reg_err']);
 
-            switch ($err) {
-                case 'success':
-        ?>
-                    <div class="alert alert-success">
-                        <strong>Succès </strong>Tâche créée !
-                    </div>
-                <?php
-                    header('Location:../index.php');
-                    break;
 
-                case 'nom':
-                ?>
-                    <div class="alert alert-danger">
-                        <strong>Echec </strong>Le nom de votre tâche est trop long !
-                    </div>
-                <?php
-                    break;
-                case 'ErreurTache':
-                ?>
-                    <div class="alert alert-danger">
-                        <strong>Echec </strong>Veuillez renseigner un nom de Tâche !
-                    </div>
-        <?php
-            }
-        }
-        ?>
-        <form action="creerTache_verif.php?action=<?php echo $IdL ?>" method="POST">
-            <h1>Tâche</h1>
+    <form action="creerListePrivee_verif.php?action=<?php echo $Mail?>" method="POST">
+        <h1>Liste de tâches</h1>
 
-            <label><b>Nom de la Tâche</b></label>
-            <input type="text" placeholder="Nom de votre tâche" name="Ntache" required="required" />
+        <label><b>Nom de la liste</b></label>
+        <input type="text" placeholder="Nom de la liste" name="nom" />
 
-            <label><b>Description</b></label>
-            <input type="text" placeholder="Description" name="Tdesc" />
+        <input type="submit" id='submit' value='Créer'>
 
-            <label><b>date de fin</b></label>
-            <input type="date" placeholder="date de fin" name="dateF" />
-
-            <input type="submit" id='submit' value='Créer'>
-
-        </form>
-    </div>
+    </form>
+</div>
 </body>
 
 <style>

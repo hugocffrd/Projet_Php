@@ -44,7 +44,7 @@
                     <div id="containerList">
                         <div id="headerlist">
                             <H2> <?php echo $liste->getNom() ?></H2>
-                            <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL() ?>'> X </button>
+                            <button type="button" class="btn" id="suppList" onclick=window.location='Vues/suppListe.php?action=<?php echo $liste->getIdL() ?>'> X </button>
                         </div>
 
                         <div class="btn-group-vertical">
@@ -56,12 +56,12 @@
 
                                     if ($tache->getDateFin() < date('Y-m-d')) {
                             ?>
-                                        <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
+                                        <button type="button" class="btn btn-secondary" onclick=window.location='Vues/gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
                                         <?php
                                         echo $tache->getNom();
                                     } else {
                                         ?>
-                                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
+                                            <button type="button" class="btn btn-secondary" onclick=window.location='Vues/gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
                                     <?php
                                         echo $tache->getNom();
                                     }
@@ -77,7 +77,7 @@
                                             ?>
 
                         </div>
-                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> + tâche
+                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location='Vues/creerTache.php?action=<?php echo $liste->getIdL() ?>'> + tâche
                         </button>
                     </div>
         <?php
