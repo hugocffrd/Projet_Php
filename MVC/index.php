@@ -1,9 +1,10 @@
 <?php
 require "Controller/Controller.php";
-
+$action = 'default';
 accueil();
-$action = $_GET['action'];
-
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+}
 switch ($action) {
     case 'connection':
 ?>

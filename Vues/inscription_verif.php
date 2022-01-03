@@ -40,7 +40,7 @@
                                 //     'pwd' => $pwd
                                 // ));
 
-                                header('Location:creerUtilisateur.php?reg_err=sucess');
+                                header('Location:connexion.php?login_err=sucess');
                             } else header('Location:creerUtilisateur.php?reg_err=password');
                         } else header('Location:creerUtilisateur.php?reg_err=mail');
                     } else header('Location:creerUtilisateur.php?reg_err=mail_lenght');

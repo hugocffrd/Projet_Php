@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once '../ConnectBDD/ConnectBDD.php';
 require_once '../Modele/TacheGateway.php';
 require_once '../Modele/ListeTacheGateway.php';
@@ -33,45 +34,229 @@ $data = $req->fetch();
                                 ?> !</h1>
         <hr />
 
-
-        <a href="creerTache.php" class="btn btn-primary btn-lg">Creer une tâche</a>
-        <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
+        <a href="deconnexion.php" class="btn btn-danger bouton">Déconnexion</a>
+        <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListe.php'>+ liste
+            publique
+        </button>
+        <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListePrivee.php?action=<?php echo $data['Mail'] ?>'>+ liste
+            privée
+        </button>
     </div>
 
     <?php
-    require_once '../Modele/TacheGateway.php';
-    require_once '../Modele/ListeTacheGateway.php';
-    $Tgateway = new TacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
-    $LTgateway = new ListeTacheGateway("mysql:host=localhost;dbname=dbroot", "root", "");
+    $Tgateway = new TacheGateway($connect);
+    $LTgateway = new ListeTacheGateway($connect);
     $tabFindListeTache[] = $LTgateway->findAll();
     ?>
-    <div class="text-center">
-        <select class="form-select form-select-lg mb-3">
-            <option selected="selected">Sélectionner une liste</option>
-            <?php
+
+    <div class="text-center" id="divLists">
+        <H2>Listes publiques</H2>
+
+        <?php
+        foreach ($tabFindListeTache
+
+            as $tabL) {
+            foreach ($tabL
+
+                as $liste) {
+                if ($liste->getPrivee() == false) {
+
+                    $tabFindTache[] = $Tgateway->findByIdL($liste->getIdL());
+        ?>
+                    <div id="containerList">
+                        <div id="headerlist">
+                            <H2> <?php echo $liste->getNom() ?></H2>
+                            <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL() ?>'> X
+                            </button>
+                        </div>
+
+                        <div class="btn-group-vertical">
+                            <?php
+
+                            foreach ($tabFindTache
+
+                                as $tabT) {
+                                foreach ($tabT
+
+                                    as $tache) {
 
 
-            // Parcourir le tableau des langues
-            foreach ($tabFindListeTache as $tabL) {
-                foreach ($tabL as $liste) {
-                    if ($liste->getPrivee() == true) {
-                        if ($liste->getMailU() == $data['Mail']) {
-            ?>
-                            <option value="<?php echo $liste->getNom(); ?>"><?php echo $liste->getNom(); ?></option>
+                                    if ($tache->getDateFin() < date('Y-m-d')) {
+                            ?>
+                                        <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
+                                        <?php
+                                        echo $tache->getNom();
+                                    } else {
+                                        ?>
+                                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
+                                    <?php
+                                        echo $tache->getNom();
+                                    }
+                                }
+                            }
+                            $tabFindTache = array();
+                                    ?>
+                                            </button>
+                        </div>
+                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
+                            tâche
+                        </button>
+                    </div>
             <?php
-                        }
-                    }
                 }
             }
             ?>
-        </select>
-    </div>
-</body>
 
+
+        <?php
+        }
+
+        ?>
+
+    </div>
+    <div class="text-center" id="divLists">
+        <H2>Listes privées</H2>
+
+        <?php
+        foreach ($tabFindListeTache
+
+            as $tabL) {
+            foreach ($tabL
+
+                as $liste) {
+                if ($liste->getPrivee()) {
+                    if ($liste->getMailU() == $data['Mail']) {
+                        $tabFindTache[] = $Tgateway->findByIdL($liste->getIdL());
+        ?>
+                        <div id="containerList">
+                            <div id="headerlist">
+                                <H2> <?php echo $liste->getNom() ?></H2>
+                                <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL() ?>'>
+                                    X
+                                </button>
+                            </div>
+
+                            <div class="btn-group-vertical">
+                                <?php
+
+                                foreach ($tabFindTache
+
+                                    as $tabT) {
+                                    foreach ($tabT
+
+                                        as $tache) {
+
+
+                                        if ($tache->getDateFin() < date('Y-m-d')) {
+                                ?>
+                                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
+                                            <?php
+                                            echo $tache->getNom();
+                                        } else {
+                                            ?>
+                                                <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
+                                        <?php
+                                            echo $tache->getNom();
+                                        }
+                                    }
+                                }
+                                $tabFindTache = array();
+                                        ?>
+                                                </button>
+
+                            </div>
+                            <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
+                                tâche
+                            </button>
+                        </div>
+
+        <?php
+
+
+                    }
+                }
+            }
+        }
+
+        ?>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
 <style>
     body {
         background: #90cbff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    H2 {
+        margin: 10px;
+    }
+
+    .bouton {
+        background-color: #EEB241;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 15%;
+    }
+
+
+    #containerList {
+        background-color: lightgray;
+        border-radius: 10px;
+        width: 40%;
+        margin: 20px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .btn-group-vertical {
+        width: 100%;
+    }
+
+    #BLate {
+        color: lightsalmon;
+    }
+
+    #BOk {
+        color: white;
+    }
+
+    .boutonAdd {
+        margin: 5px;
+    }
+
+    #headerlist {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bouton {
+        background-color: #EEB241;
+        margin: 2px;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 15%;
+    }
+
+    #suppList {
+        margin: 5px;
+        background-color: firebrick;
     }
 </style>
+
 
 </html>

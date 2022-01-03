@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
     <div id="container">
         <?php
         if (isset($_GET['login_err'])) {
@@ -26,6 +27,13 @@
                 ?>
                     <div class="alert alert-danger">
                         <strong>Erreur </strong>adresse mail incorrect
+                    </div>
+                <?php
+                    break;
+                case 'sucess':
+                ?>
+                    <div class="alert alert-success">
+                        <strong>Succès </strong>Inscription réussie !
                     </div>
                 <?php
                     break;
