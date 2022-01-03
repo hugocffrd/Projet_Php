@@ -212,7 +212,7 @@ $data = $req->fetch();
     #containerList {
         background-color: lightgray;
         border-radius: 10px;
-        width: 300px;
+        width: 40%;
         margin: 20px;
         margin-left: auto;
         margin-right: auto;

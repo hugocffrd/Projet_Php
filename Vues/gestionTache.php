@@ -83,6 +83,9 @@
         border-radius: 10px;
         width: 40%;
         margin: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
         text-align: center;
     }
 

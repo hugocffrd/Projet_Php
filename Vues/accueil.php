@@ -11,8 +11,11 @@
 
 <H1 id="titlePublic"> Page publique </H1>
 <div id="container">
-    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='connexion.php'>Connexion</button>
-    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerUtilisateur.php'>Inscription</button>
+    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='connexion.php'>Connexion
+    </button>
+    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerUtilisateur.php'>
+        Inscription
+    </button>
     <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListe.php'>+ liste</button>
 </div>
 
@@ -43,43 +46,63 @@ $tabFindListeTache[] = $LTgateway->findAll();
 
                 ?>
                 <div id="containerList">
-                <div id="headerlist">
-                    <H2> <?php  echo $liste->getNom()?></H2>
-                    <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL()?>'> X </button>
-                </div>
+                    <div id="headerlist">
+                        <H2> <?php echo $liste->getNom() ?></H2>
+                        <button type="button" class="btn" id="suppList"
+                                onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL() ?>'> X
+                        </button>
+                    </div>
 
-                <div class="btn-group-vertical">
-                <?php
+                    <div class="btn-group-vertical">
+                        <?php
 
-                foreach ($tabFindTache as $tabT) {
-                    foreach ($tabT as $tache) {
+                        foreach ($tabFindTache
+
+                                 as $tabT) {
+                        foreach ($tabT
+
+                                 as $tache) {
 
 
                         if ($tache->getDateFin() < date('Y-m-d')) {
                             ?>
-                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT()?>' id="BLate">
-                            <?php
-                            echo $tache->getNom();
+                            <div id="containerTache">
+                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
+                                   aria-label="...">
+
+                            <button type="button" class="btn btn-secondary"
+                                    onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>'
+                                    id="BLate">
+                                <?php
+                                echo $tache->getNom(); ?>
+                            </div><?php
                         } else {
-                            ?>
-                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT()?>' id="BOk">
+                        ?>
+                        <div id="containerTache">
+                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
+                                   aria-label="...">
+                        <button type="button" class="btn btn-secondary"
+                                onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>'
+                                id="BOk">
                             <?php
-                            echo $tache->getNom();
+                            echo $tache->getNom();?>
+                            </div><?php
 
-                        }
-                    }
-                }
-                $tabFindTache = array();
-                ?>
+                            }
+                            }
+                            }
+                            $tabFindTache = array();
+                            ?>
 
-                </button>
+                        </button>
 
-                <?php
+                        <?php
 
-                ?>
+                        ?>
 
-                </div>
-                    <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL()?>'> + tâche
+                    </div>
+                    <button type="button" class="boutonAdd btn btn-success"
+                            onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> + tâche
                     </button>
                 </div>
                 <?php
@@ -109,6 +132,7 @@ $tabFindListeTache[] = $LTgateway->findAll();
         display: flex;
         flex-direction: column;
         justify-content: center;
+
     }
 
     #container {
@@ -125,7 +149,7 @@ $tabFindListeTache[] = $LTgateway->findAll();
         border-radius: 10px;
         cursor: pointer;
         width: 15%;
-        margin:2px;
+        margin: 2px;
     }
 
 
@@ -133,12 +157,17 @@ $tabFindListeTache[] = $LTgateway->findAll();
         text-align: center;
     }
 
+    #containerTache {
+        width: 100%;
+    }
 
     #containerList {
         background-color: lightgray;
         border-radius: 10px;
         width: 40%;
         margin: 20px;
+        margin-left: auto;
+        margin-right: auto;
 
     }
 
@@ -146,16 +175,18 @@ $tabFindListeTache[] = $LTgateway->findAll();
         width: 100%;
     }
 
-    .boutonAdd{
+    .boutonAdd {
         margin: 5px;
     }
 
     #BLate {
         color: lightsalmon;
+        width: 100%;
     }
 
     #BOk {
         color: white;
+        width: 100%;
     }
 
     #headerlist {
