@@ -75,16 +75,16 @@ $tabFindListeTache[] = $LTgateway->findAll();
                 </button>
 
                 <?php
+
+                ?>
+
+                </div>
+                    <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL()?>'> + tâche
+                    </button>
+                </div>
+                <?php
             }
 
-
-            ?>
-
-            </div>
-            <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL()?>'> + tâche
-            </button>
-            </div>
-            <?php
 
         }
     }

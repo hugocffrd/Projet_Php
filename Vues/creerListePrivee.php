@@ -7,6 +7,12 @@
 </head>
 
 <body>
+<?php
+if (isset($_GET['action'])){
+    $Mail=$_GET['action'];
+}
+
+?>
 <div id="container">
     <?php
     if (isset($_GET['reg_err'])) {
@@ -39,7 +45,7 @@
 
 
 
-    <form action="creerListePrivee_verif.php" method="POST">
+    <form action="creerListePrivee_verif.php?action=<?php echo $Mail?>" method="POST">
         <h1>Liste de tâches</h1>
 
         <label><b>Nom de la liste</b></label>

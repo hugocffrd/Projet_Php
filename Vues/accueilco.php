@@ -39,7 +39,8 @@ $data = $req->fetch();
     <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListe.php'>+ liste
         publique
     </button>
-    <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListePrivee.php'>+ liste
+    <button class="bouton btn btn-primary" height="100px"
+            onclick=window.location.href='creerListePrivee.php?action=<?php echo $data['Mail'] ?>'>+ liste
         privée
     </button>
 </div>
@@ -49,8 +50,9 @@ $Tgateway = new TacheGateway($connect);
 $LTgateway = new ListeTacheGateway($connect);
 $tabFindListeTache[] = $LTgateway->findAll();
 ?>
-<div class="text-center" id="divLists">
 
+<div class="text-center" id="divLists">
+    <H2>Listes publiques</H2>
 
     <?php
     foreach ($tabFindListeTache
@@ -60,63 +62,71 @@ $tabFindListeTache[] = $LTgateway->findAll();
 
                  as $liste) {
             if ($liste->getPrivee() == false) {
-                ?> <H2>Listes publiques</H2> <?php
+
                 $tabFindTache[] = $Tgateway->findByIdL($liste->getIdL());
                 ?>
                 <div id="containerList">
-                <div id="headerlist">
-                    <H2> <?php echo $liste->getNom() ?></H2>
-                    <button type="button" class="btn" id="suppList"
-                            onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL() ?>'> X
-                    </button>
-                </div>
+                    <div id="headerlist">
+                        <H2> <?php echo $liste->getNom() ?></H2>
+                        <button type="button" class="btn" id="suppList"
+                                onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL() ?>'> X
+                        </button>
+                    </div>
 
-                <div class="btn-group-vertical">
-                <?php
+                    <div class="btn-group-vertical">
+                        <?php
 
-                foreach ($tabFindTache as $tabT) {
-                    foreach ($tabT as $tache) {
+                        foreach ($tabFindTache
+
+                        as $tabT) {
+                        foreach ($tabT
+
+                        as $tache) {
 
 
                         if ($tache->getDateFin() < date('Y-m-d')) {
-                            ?>
-                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
+                        ?>
+                        <button type="button" class="btn btn-secondary"
+                                onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>'
+                                id="BLate">
                             <?php
                             echo $tache->getNom();
-                        } else {
+                            } else {
                             ?>
-                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
-                            <?php
-                            echo $tache->getNom();
+                            <button type="button" class="btn btn-secondary"
+                                    onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>'
+                                    id="BOk">
+                                <?php
+                                echo $tache->getNom();
 
-                        }
-                    }
-                }
-                $tabFindTache = array();
-                ?>
-                </button>
+                                }
+                                }
+                                }
+                                $tabFindTache = array();
+                                ?>
+                            </button>
+                    </div>
+                    <button type="button" class="boutonAdd btn btn-success"
+                            onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
+                        tâche
+                    </button>
+                </div>
                 <?php
             }
 
-            ?>
-            </div>
-            <button type="button" class="boutonAdd btn btn-success"
-                    onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
-                tâche
-            </button>
-            </div>
-
-
-            <?php
 
         }
+        ?>
+
+
+        <?php
     }
 
     ?>
 
 </div>
 <div class="text-center" id="divLists">
-
+    <H2>Listes privées</H2>
 
     <?php
     foreach ($tabFindListeTache
@@ -127,7 +137,6 @@ $tabFindListeTache[] = $LTgateway->findAll();
                  as $liste) {
             if ($liste->getPrivee()) {
                 if ($liste->getMailU() == $data['Mail']) {
-                    ?> <H2>Listes privées</H2> <?php
                     $tabFindTache[] = $Tgateway->findByIdL($liste->getIdL());
                     ?>
                     <div id="containerList">
@@ -171,10 +180,7 @@ $tabFindListeTache[] = $LTgateway->findAll();
                                     $tabFindTache = array();
                                     ?>
                                 </button>
-                                <?php
 
-
-                                ?>
                         </div>
                         <button type="button" class="boutonAdd btn btn-success"
                                 onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
@@ -182,9 +188,11 @@ $tabFindListeTache[] = $LTgateway->findAll();
                         </button>
                     </div>
 
-
                     <?php
+
+
                 }
+
             }
         }
     }
