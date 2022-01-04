@@ -35,7 +35,7 @@ foreach ($tabFindListe as $tabL) {
 }
 
 if ($isconected == 1) {
-    header('Location:accueilco.php');
+    header('Location:../Vues/accueilco.php');
 } else {
     header('Location:../index.php');
 }

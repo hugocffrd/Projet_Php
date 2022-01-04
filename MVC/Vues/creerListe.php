@@ -45,11 +45,11 @@
 
 
 
-        <form action="creerListe_verif.php" method="POST">
+        <form action="../modele/creerListe_verif.php" method="POST">
             <h1>Liste de tâches</h1>
 
             <label><b>Nom de la liste</b></label>
-            <input type="text" placeholder="Nom de la liste" name="nom" />
+            <input type="text" placeholder="Nom de la liste" name="nom" required />
             <input type="hidden" name="user" value="<?php echo $isconected; ?>">
             <input type="submit" id='submit' value='Créer'>
 

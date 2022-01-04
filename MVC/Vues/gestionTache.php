@@ -19,14 +19,17 @@
             $IdT = $_GET['action'];
         }
 
+        if (isset($_GET['user'])) {
+            $conected = 1;
+        } else $conected = 0;
+
         $tabFindTache[] = $Tgateway->findById($IdT);
         foreach ($tabFindTache as $tab) {
             foreach ($tab as $tache) {
         ?>
                 <div id="headertache">
                     <H1> <?php echo $tache->getNom(); ?></H1>
-                    <button type="button" class="btn" id="suppTache" onclick=window.location.href='suppTache.php?action=<?php echo $tache->getIdT() ?>'> X
-                    </button>
+                    <button type="button" class="btn" id="suppTache" onclick=window.location='../Modele/suppTache.php?action=<?php echo $tache->getIdT() ?>&user=<?php echo $conected; ?>'> X </button>
                 </div>
                 <?php
 

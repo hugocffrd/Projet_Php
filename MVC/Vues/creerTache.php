@@ -48,7 +48,7 @@
             }
         }
         ?>
-        <form action="creerTache_verif.php?action=<?php echo $IdL ?>" method="POST">
+        <form action="../modele/creerTache_verif.php?action=<?php echo $IdL ?>" method="POST">
             <h1>Tâche</h1>
 
             <label><b>Nom de la Tâche</b></label>

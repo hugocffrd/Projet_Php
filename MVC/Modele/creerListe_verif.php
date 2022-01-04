@@ -12,20 +12,21 @@ if (isset($_POST['nom'])) {
     $connect = $con->getConnect();
     $LTgateway = new ListeTacheGateway($connect);
     $nom = htmlspecialchars(($_POST['nom']));
-    $nbid = 0;
 
-    //Pour connaitre le nombre de listes totales
-    $check = $connect->prepare('SELECT IdL from listetache');
-    $check->execute(array($nbid));
-    $Nbrow = $check->rowCount();
-
+    //Pour connaitre l'id max
+    $query = "SELECT MAX(IdL) from listetache";
+    $connect->executeQuery($query, array());
+    $results = $connect->getResults();
+    foreach ($results as $row) {
+        $Nbrow = ($row["MAX(IdL)"]);
+    }
     //Pour savoir si une liste avec le même nom existe
     $check = $connect->prepare('SELECT Nom from listetache WHERE Nom = ?');
     $check->execute(array($nom));
     $row = $check->rowCount();
 
     // si il n'y a aucune liste alors on créer l'id 0
-    if ($Nbrow == 0) {
+    if ($Nbrow == NULL) {
         $id = 0;
     } else {
         $id = $Nbrow + 1; // Créer une id pour la tâche que l'on créer
@@ -36,8 +37,8 @@ if (isset($_POST['nom'])) {
             $NewListe = new ListeTache($id, $nom, 0, NULL);
             $LTgateway->insertListe($NewListe);
             if ($isconnect == 1) {
-                header('Location:accueilco.php');
+                header('Location:../Vues/accueilco.php');
             } else header('Location:../index.php');
-        } else header('Location:creerListe.php?reg_err=nom');
-    } else header('Location:creerListe.php?reg_err=already');
-} else header('Location:creerListe.php?reg_err=ErreurListe');
+        } else header('Location:../Vues/creerListe.php?reg_err=nom');
+    } else header('Location:../Vues/creerListe.php?reg_err=already');
+} else header('Location:../Vues/creerListe.php?reg_err=ErreurListe');

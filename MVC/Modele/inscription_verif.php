@@ -40,13 +40,13 @@
                                 //     'pwd' => $pwd
                                 // ));
 
-                                header('Location:connexion.php?login_err=sucess');
-                            } else header('Location:creerUtilisateur.php?reg_err=password');
-                        } else header('Location:creerUtilisateur.php?reg_err=mail');
-                    } else header('Location:creerUtilisateur.php?reg_err=mail_lenght');
-                } else header('Location:creerUtilisateur.php?reg_err=prenom_Lenght');
-            } else header('Location:creerUtilisateur.php?reg_err=nom_Lenght');
-        } else header('Location:creerUtilisateur.php?reg_err=already');
+                                header('Location:../Vues/connexion.php?login_err=sucess');
+                            } else header('Location:../Vues/creerUtilisateur.php?reg_err=password');
+                        } else header('Location:../Vues/creerUtilisateur.php?reg_err=mail');
+                    } else header('Location:../Vues/creerUtilisateur.php?reg_err=mail_lenght');
+                } else header('Location:../Vues/creerUtilisateur.php?reg_err=prenom_Lenght');
+            } else header('Location:../Vues/creerUtilisateur.php?reg_err=nom_Lenght');
+        } else header('Location:../Vues/creerUtilisateur.php?reg_err=already');
     }
 
     ?>

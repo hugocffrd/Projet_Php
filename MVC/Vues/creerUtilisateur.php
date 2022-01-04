@@ -64,7 +64,7 @@
             }
         }
         ?>
-        <form action="inscription_verif.php" method="POST">
+        <form action="../Modele/inscription_verif.php" method="POST">
             <center>
                 <h1>Inscription</h1>
             </center>

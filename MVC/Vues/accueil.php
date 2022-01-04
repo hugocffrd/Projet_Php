@@ -16,9 +16,9 @@
     </div>
 
     <?php
-    require_once 'ConnectBDD/ConnectBDD.php';
-    require_once '../Modele/TacheGateway.php';
-    require_once '../Modele/ListeTacheGateway.php';
+    require 'ConnectBDD/ConnectBDD.php';
+    require 'Modele/TacheGateway.php';
+    require 'Modele/ListeTacheGateway.php';
 
     $con = new ConnectBDD();
     $Tgateway = new TacheGateway($con->getConnect());
@@ -44,7 +44,7 @@
                     <div id="containerList">
                         <div id="headerlist">
                             <H2> <?php echo $liste->getNom() ?></H2>
-                            <button type="button" class="btn" id="suppList" onclick=window.location='Vues/suppListe.php?action=<?php echo $liste->getIdL() ?>'> X
+                            <button type="button" class="btn" id="suppList" onclick=window.location='Modele/suppListe.php?action=<?php echo $liste->getIdL() ?>'> X
                             </button>
                         </div>
 
@@ -58,7 +58,7 @@
                                     <div id="containerTache">
 
                                         <?php if ($tache->getChecked()) { ?>
-                                            <form class="checkbox" method="post" action="Vues/updateTache.php?action=<?php echo $tache->getIdT() ?>">
+                                            <form class="checkbox" method="post" action="Modele/updateTache.php?action=<?php echo $tache->getIdT() ?>">
                                                 <input class="form-check-input" checked="true" type="checkbox" id="checkboxNoLabel" onclick="this.form.submit()">
 
                                                 <?php if ($tache->getDateFin() < date('Y-m-d')) { ?>
@@ -72,7 +72,7 @@
                                                 <?php } ?>
                                             </form>
                                         <?php } else { ?>
-                                            <form class="checkbox" method="post" action="Vues/updateTache.php?action=<?php echo $tache->getIdT() ?>">
+                                            <form class="checkbox" method="post" action="Modele/updateTache.php?action=<?php echo $tache->getIdT() ?>">
 
                                                 <input class="form-check-input" type="checkbox" id="checkboxNoLabel" onclick="this.form.submit()">
 

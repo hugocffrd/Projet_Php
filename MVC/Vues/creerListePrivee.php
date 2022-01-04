@@ -7,54 +7,54 @@
 </head>
 
 <body>
-<?php
-if (isset($_GET['action'])){
-    $Mail=$_GET['action'];
-}
-
-?>
-<div id="container">
     <?php
-    if (isset($_GET['reg_err'])) {
-        $err = htmlspecialchars($_GET['reg_err']);
-
-        switch ($err) {
-            case 'success':
-                ?>
-                <div class="alert alert-success">
-                    <strong>Succès </strong>Liste créée !
-                </div>
-                <?php
-                break;
-            case 'nom':
-                ?>
-                <div class="alert alert-danger">
-                    <strong>Echec </strong>Le nom de votre liste est trop long !
-                </div>
-                <?php
-                break;
-            case 'ErreurListe':
-                ?>
-                <div class="alert alert-danger">
-                    <strong>Echec </strong>Veuillez renseigner un nom de liste!
-                </div>
-            <?php
-        }
+    if (isset($_GET['action'])) {
+        $Mail = $_GET['action'];
     }
+
     ?>
+    <div id="container">
+        <?php
+        if (isset($_GET['reg_err'])) {
+            $err = htmlspecialchars($_GET['reg_err']);
+
+            switch ($err) {
+                case 'success':
+        ?>
+                    <div class="alert alert-success">
+                        <strong>Succès </strong>Liste créée !
+                    </div>
+                <?php
+                    break;
+                case 'nom':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Echec </strong>Le nom de votre liste est trop long !
+                    </div>
+                <?php
+                    break;
+                case 'ErreurListe':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Echec </strong>Veuillez renseigner un nom de liste!
+                    </div>
+        <?php
+            }
+        }
+        ?>
 
 
 
-    <form action="creerListePrivee_verif.php?action=<?php echo $Mail?>" method="POST">
-        <h1>Liste de tâches</h1>
+        <form action="../modele/creerListePrivee_verif.php?action=<?php echo $Mail ?>" method="POST">
+            <h1>Liste de tâches</h1>
 
-        <label><b>Nom de la liste</b></label>
-        <input type="text" placeholder="Nom de la liste" name="nom" />
+            <label><b>Nom de la liste</b></label>
+            <input type="text" placeholder="Nom de la liste" name="nom" />
 
-        <input type="submit" id='submit' value='Créer'>
+            <input type="submit" id='submit' value='Créer'>
 
-    </form>
-</div>
+        </form>
+    </div>
 </body>
 
 <style>

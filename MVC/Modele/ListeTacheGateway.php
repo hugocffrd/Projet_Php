@@ -1,6 +1,5 @@
 <?php
 
-require_once 'Connection.php';
 require_once 'ListeTache.php';
 
 class ListeTacheGateway

@@ -1,6 +1,5 @@
 <?php
-require '../Modele/Connection.php';
-require_once '../Config/Config.php';
+require 'Modele/Connection.php';
 
 //root à changer avec un autre utilisateur qui a accès à la database
 class ConnectBDD

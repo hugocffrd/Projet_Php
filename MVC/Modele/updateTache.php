@@ -8,6 +8,10 @@ $con = new ConnectBDD();
 $connect = $con->getConnect();
 $Tgateway = new TacheGateway($connect);
 
+if (isset($_POST["user"])) {
+    $isconected = 1;
+} else $isconected = 0;
+
 if (isset($_GET['action'])) {
     $IdT = $_GET['action'];
 }
@@ -24,4 +28,9 @@ foreach ($tabFindtache as $tabT) {
         }
     }
 }
-//header('Location:accueil.php');
+
+if ($isconected == 1) {
+    header('Location:../Vues/accueilco.php');
+} else {
+    header('Location:../index.php');
+}
