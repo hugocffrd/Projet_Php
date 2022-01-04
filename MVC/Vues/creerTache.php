@@ -11,6 +11,10 @@
     if (isset($_GET['action'])) {
         $IdL = $_GET['action'];
     }
+    if (isset($_GET['user'])) {
+        $isconected = 1;
+    } else $isconected = 0;
+
 
     ?>
 
@@ -55,6 +59,7 @@
 
             <label><b>date de fin</b></label>
             <input type="date" placeholder="date de fin" name="dateF" />
+            <input type="hidden" name="user" value="<?php echo $isconected; ?>">
 
             <input type="submit" id='submit' value='Créer'>
 

@@ -7,17 +7,23 @@ if (isset($_GET['action'])) {
     $idl = $_GET['action'];
 }
 
-if (isset($_POST['Ntache'])) {
 
+if (isset($_POST['Ntache'])) {
     $con = new ConnectBDD();
     $connect = $con->getConnect();
+
+    $isconnect = 0;
+    $isconnect = htmlspecialchars(($_POST['user']));
+
 
     $Tgateway = new TacheGateway($connect);
     $nom = htmlspecialchars($_POST['Ntache']);
     $desc = htmlspecialchars($_POST['Tdesc']);
     if (htmlspecialchars($_POST['dateF'])) {
         $date = htmlspecialchars($_POST['dateF']);
-    } else $date = null;
+    } else {
+        $date = null;
+    }
 
 
     $nbid = 0;
@@ -34,10 +40,20 @@ if (isset($_POST['Ntache'])) {
         $id = $Nbrow + 1; // Créer une id pour la tâche que l'on créer
     }
 
-
+    if ($isconnect == 0) {
+        if (strlen($nom) < 100) {
+            $tacheCreer = new Tache($id, $nom, $desc, $date, $idl, 0);
+            $Tgateway->insertTache($tacheCreer);
+            header('Location:../index.php');
+        } else {
+            header('Location:CreerTache.php?reg_err=nom');
+        }
+    }
     if (strlen($nom) < 100) {
         $tacheCreer = new Tache($id, $nom, $desc, $date, $idl, 0);
         $Tgateway->insertTache($tacheCreer);
-        header('Location:../index.php');
-    } else header('Location:CreerTache.php?reg_err=nom');
-} else header('Location:CreerTache.php?reg_err=ErreurTache');
+        header('Location:accueilco.php');
+    } else {
+        header('Location:CreerTache.php?reg_err=nom&user=1');
+    }
+}

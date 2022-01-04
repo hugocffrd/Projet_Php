@@ -124,7 +124,7 @@ $data = $req->fetch();
                             }
                             $tabFindTache = array();
                     ?>
-                    <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
+                    <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>&user=1'> +
                         tâche
                     </button>
                     </div>
@@ -214,7 +214,7 @@ $data = $req->fetch();
                                 }
                                 $tabFindTache = array();
                         ?>
-                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
+                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>&user=1'> +
                             tâche
                         </button>
                         </div>
