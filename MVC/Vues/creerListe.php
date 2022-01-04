@@ -7,48 +7,54 @@
 </head>
 
 <body>
-<div id="container">
-    <?php
+    <div id="container">
+        <?php
+
+        if (isset($_GET['action'])) {
+            $isconected = 1;
+        } else $isconected = 0;
+
+
         if (isset($_GET['reg_err'])) {
             $err = htmlspecialchars($_GET['reg_err']);
 
             switch ($err) {
                 case 'success':
         ?>
-    <div class="alert alert-success">
-        <strong>Succès </strong>Liste créée !
-    </div>
-    <?php
+                    <div class="alert alert-success">
+                        <strong>Succès </strong>Liste créée !
+                    </div>
+                <?php
                     break;
                 case 'nom':
                 ?>
-    <div class="alert alert-danger">
-        <strong>Echec </strong>Le nom de votre tâche est trop long !
-    </div>
-    <?php
+                    <div class="alert alert-danger">
+                        <strong>Echec </strong>Le nom de votre tâche est trop long !
+                    </div>
+                <?php
                     break;
                 case 'ErreurListe':
                 ?>
-    <div class="alert alert-danger">
-        <strong>Echec </strong>Veuillez renseigner un nom de liste!
-    </div>
-    <?php
+                    <div class="alert alert-danger">
+                        <strong>Echec </strong>Veuillez renseigner un nom de liste!
+                    </div>
+        <?php
             }
         }
         ?>
 
 
 
-    <form action="creerListe_verif.php" method="POST">
-        <h1>Liste de tâches</h1>
+        <form action="creerListe_verif.php" method="POST">
+            <h1>Liste de tâches</h1>
 
-        <label><b>Nom de la liste</b></label>
-        <input type="text" placeholder="Nom de la liste" name="nom" />
+            <label><b>Nom de la liste</b></label>
+            <input type="text" placeholder="Nom de la liste" name="nom" />
+            <input type="hidden" name="user" value="<?php echo $isconected; ?>">
+            <input type="submit" id='submit' value='Créer'>
 
-        <input type="submit" id='submit' value='Créer'>
-
-    </form>
-</div>
+        </form>
+    </div>
 </body>
 
 <style>

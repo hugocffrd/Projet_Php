@@ -35,10 +35,10 @@ $data = $req->fetch();
         <hr />
 
         <a href="deconnexion.php" class="btn btn-danger bouton">Déconnexion</a>
-        <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListe.php'>+ liste
+        <button class="bouton btn btn-primary" height="100px" onclick=window.location='creerListe.php?action=user'>Créer liste
             publique
         </button>
-        <button class="bouton btn btn-primary" height="100px" onclick=window.location.href='creerListePrivee.php?action=<?php echo $data['Mail'] ?>'>+ liste
+        <button class="bouton btn btn-primary" height="100px" onclick=window.location='creerListePrivee.php?action=<?php echo $data['Mail'] ?>'>Créer liste
             privée
         </button>
     </div>
@@ -66,7 +66,7 @@ $data = $req->fetch();
                     <div id="containerList">
                         <div id="headerlist">
                             <H2> <?php echo $liste->getNom() ?></H2>
-                            <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL() ?>'> X
+                            <button type="button" class="btn" id="suppList" onclick=window.location='suppListe.php?action=<?php echo $liste->getIdL() ?>&user=1'> X
                             </button>
                         </div>
 
@@ -80,27 +80,53 @@ $data = $req->fetch();
 
                                     as $tache) {
 
-
-                                    if ($tache->getDateFin() < date('Y-m-d')) {
                             ?>
-                                        <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
-                                        <?php
-                                        echo $tache->getNom();
-                                    } else {
-                                        ?>
-                                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
-                                    <?php
-                                        echo $tache->getNom();
-                                    }
+                                    <div id="containerTache">
+
+                                        <?php if ($tache->getChecked()) { ?>
+                                            <form class="checkbox" method="post" action="updateTache.php?action=<?php echo $tache->getIdT() ?>">
+                                                <input class="form-check-input" checked="true" type="checkbox" id="checkboxNoLabel" onclick="this.form.submit()">
+                                                <input type="hidden" name="user" value="<?php echo $_SESSION['user'] ?>">
+
+                                                <?php if ($tache->getDateFin() < date('Y-m-d')) { ?>
+                                                    <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
+                                                        <label class="strikethrough"><?php echo $tache->getNom(); ?></label>
+                                                    </button>
+                                                <?php } else { ?>
+                                                    <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
+                                                        <label class="strikethrough"><?php echo $tache->getNom(); ?></label>
+                                                    </button>
+                                                <?php } ?>
+                                            </form>
+                                        <?php } else { ?>
+                                            <form class="checkbox" method="post" action="updateTache.php?action=<?php echo $tache->getIdT() ?>">
+
+                                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" onclick="this.form.submit()">
+                                                <input type="hidden" name="user" value="<?php echo $_SESSION['user'] ?>">
+
+                                                <?php if ($tache->getDateFin() < date('Y-m-d')) { ?>
+                                                    <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
+                                                        <label class="strikethrough"><?php echo $tache->getNom(); ?></label>
+                                                    </button>
+                                                <?php } else { ?>
+                                                    <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
+                                                        <label class="strikethrough"><?php echo $tache->getNom(); ?></label>
+                                                    </button>
+                                            <?php }
+                                            } ?>
+                                            </form>
+                                    </div>
+                                <?php
                                 }
+                                ?>
+                        </div>
+                    <?php
                             }
                             $tabFindTache = array();
-                                    ?>
-                                            </button>
-                        </div>
-                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
-                            tâche
-                        </button>
+                    ?>
+                    <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
+                        tâche
+                    </button>
                     </div>
             <?php
                 }
@@ -131,7 +157,7 @@ $data = $req->fetch();
                         <div id="containerList">
                             <div id="headerlist">
                                 <H2> <?php echo $liste->getNom() ?></H2>
-                                <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php?action=<?php echo $liste->getIdL() ?>'>
+                                <button type="button" class="btn" id="suppList" onclick=window.location='suppListe.php?action=<?php echo $liste->getIdL() ?>&user=1'>
                                     X
                                 </button>
                             </div>
@@ -146,28 +172,51 @@ $data = $req->fetch();
 
                                         as $tache) {
 
-
-                                        if ($tache->getDateFin() < date('Y-m-d')) {
                                 ?>
-                                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
-                                            <?php
-                                            echo $tache->getNom();
-                                        } else {
-                                            ?>
-                                                <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
-                                        <?php
-                                            echo $tache->getNom();
-                                        }
+                                        <div id="containerTache">
+
+                                            <?php if ($tache->getChecked()) { ?>
+                                                <form class="checkbox" method="post" action="updateTache.php?action=<?php echo $tache->getIdT() ?>">
+                                                    <input class="form-check-input" checked="true" type="checkbox" id="checkboxNoLabel" onclick="this.form.submit()">
+
+                                                    <?php if ($tache->getDateFin() < date('Y-m-d')) { ?>
+                                                        <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
+                                                            <label class="strikethrough"><?php echo $tache->getNom(); ?></label>
+                                                        </button>
+                                                    <?php } else { ?>
+                                                        <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
+                                                            <label class="strikethrough"><?php echo $tache->getNom(); ?></label>
+                                                        </button>
+                                                    <?php } ?>
+                                                </form>
+                                            <?php } else { ?>
+                                                <form class="checkbox" method="post" action="updateTache.php?action=<?php echo $tache->getIdT() ?>">
+
+                                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" onclick="this.form.submit()">
+
+                                                    <?php if ($tache->getDateFin() < date('Y-m-d')) { ?>
+                                                        <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
+                                                            <label class="strikethrough"><?php echo $tache->getNom(); ?></label>
+                                                        </button>
+                                                    <?php } else { ?>
+                                                        <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
+                                                            <label class="strikethrough"><?php echo $tache->getNom(); ?></label>
+                                                        </button>
+                                                <?php }
+                                                } ?>
+                                                </form>
+                                        </div>
+                                    <?php
                                     }
+                                    ?>
+                            </div>
+                        <?php
                                 }
                                 $tabFindTache = array();
-                                        ?>
-                                                </button>
-
-                            </div>
-                            <button type="button" class="boutonAdd btn btn-success" onclick=window.location.href='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
-                                tâche
-                            </button>
+                        ?>
+                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>'> +
+                            tâche
+                        </button>
                         </div>
 
         <?php
@@ -192,11 +241,9 @@ $data = $req->fetch();
         display: flex;
         flex-direction: column;
         justify-content: center;
+
     }
 
-    H2 {
-        margin: 10px;
-    }
 
     .bouton {
         background-color: #EEB241;
@@ -206,8 +253,13 @@ $data = $req->fetch();
         border-radius: 10px;
         cursor: pointer;
         width: 15%;
+        margin: 2px;
     }
 
+
+    #containerTache {
+        width: 100%;
+    }
 
     #containerList {
         background-color: lightgray;
@@ -223,16 +275,18 @@ $data = $req->fetch();
         width: 100%;
     }
 
+    .boutonAdd {
+        margin: 5px;
+    }
+
     #BLate {
         color: lightsalmon;
+        width: 100%;
     }
 
     #BOk {
         color: white;
-    }
-
-    .boutonAdd {
-        margin: 5px;
+        width: 100%;
     }
 
     #headerlist {
@@ -241,20 +295,13 @@ $data = $req->fetch();
         justify-content: center;
     }
 
-    .bouton {
-        background-color: #EEB241;
-        margin: 2px;
-        color: white;
-        padding: 14px 20px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        width: 15%;
-    }
-
     #suppList {
         margin: 5px;
         background-color: firebrick;
+    }
+
+    H2 {
+        margin: 10px;
     }
 </style>
 

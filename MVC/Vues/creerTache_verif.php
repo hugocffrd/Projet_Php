@@ -36,10 +36,8 @@ if (isset($_POST['Ntache'])) {
 
 
     if (strlen($nom) < 100) {
-        $tacheCreer = new Tache($id, $nom, $desc, $date, $idl);
+        $tacheCreer = new Tache($id, $nom, $desc, $date, $idl, 0);
         $Tgateway->insertTache($tacheCreer);
-        if ($tacheCreer->getIdL() == 0) {
-            header('Location:../index.php');
-        } else header('Location:accueilco.php');
+        header('Location:../index.php');
     } else header('Location:CreerTache.php?reg_err=nom');
 } else header('Location:CreerTache.php?reg_err=ErreurTache');
