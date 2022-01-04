@@ -28,6 +28,8 @@ foreach ($tabFindListe as $tabL) {
         $LTgateway->suppListe($liste);
     }
 }
-header('location:../index.php');
+if ($liste->getPrivee() == 1) {
+    header('Location:accueilco.php');
+} else header('location:../index.php');
 
 ?>
