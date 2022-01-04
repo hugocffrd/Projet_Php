@@ -26,7 +26,6 @@
                         <strong>Succès </strong>Tâche créée !
                     </div>
                 <?php
-                    header('Location:../index.php');
                     break;
 
                 case 'nom':
