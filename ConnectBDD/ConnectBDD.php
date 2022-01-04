@@ -6,8 +6,8 @@ require_once '../Config/Config.php';
 class ConnectBDD {
     private $connect;
     private $dsn="mysql:host=localhost;dbname=dbroot";
-    private $user="root";
-    private $pwd="";
+    private $user="ToDoUser";
+    private $pwd="iIj4T7GCa1AkUmX0";
 
     public function __construct(){
         $this->connect=new Connection($this->dsn, $this->user, $this->pwd);
