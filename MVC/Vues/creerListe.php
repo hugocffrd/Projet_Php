@@ -10,6 +10,7 @@
     <div id="container">
         <?php
 
+
         if (isset($_GET['action'])) {
             $isconected = 1;
         } else $isconected = 0;

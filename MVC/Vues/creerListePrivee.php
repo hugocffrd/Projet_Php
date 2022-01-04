@@ -12,6 +12,10 @@
         $Mail = $_GET['action'];
     }
 
+    if (isset($_GET['user'])) {
+        $isconected = 1;
+    } else $isconected = 0;
+
     ?>
     <div id="container">
         <?php
@@ -45,7 +49,7 @@
 
 
 
-        <form action="../modele/creerListePrivee_verif.php?action=<?php echo $Mail ?>" method="POST">
+        <form action="../modele/creerListePrivee_verif.php?action=<?php echo $Mail ?>&user=<?php echo $isconected ?>>" method="POST">
             <h1>Liste de tâches</h1>
 
             <label><b>Nom de la liste</b></label>

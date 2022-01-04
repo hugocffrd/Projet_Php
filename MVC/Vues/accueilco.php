@@ -38,7 +38,7 @@ $data = $req->fetch();
         <button class="bouton btn btn-primary" height="100px" onclick=window.location='creerListe.php?action=user'>Créer liste
             publique
         </button>
-        <button class="bouton btn btn-primary" height="100px" onclick=window.location='creerListePrivee.php?action=<?php echo $data['Mail'] ?>'>Créer liste
+        <button class="bouton btn btn-primary" height="100px" onclick=window.location='creerListePrivee.php?action=<?php echo $data['Mail'] ?>&user=1'>Créer liste
             privée
         </button>
     </div>
@@ -125,7 +125,7 @@ $data = $req->fetch();
                             $tabFindTache = array();
                     ?>
                     <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>&user=1'>
-                        tâche
+                        Créer Tâche
                     </button>
                     </div>
             <?php
@@ -214,8 +214,8 @@ $data = $req->fetch();
                                 }
                                 $tabFindTache = array();
                         ?>
-                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>&user=1'> +
-                            tâche
+                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location='creerTache.php?action=<?php echo $liste->getIdL() ?>&user=1'> Créer
+                            Tâche
                         </button>
                         </div>
 

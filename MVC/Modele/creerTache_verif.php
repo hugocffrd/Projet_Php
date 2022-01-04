@@ -12,8 +12,10 @@ if (isset($_POST['Ntache'])) {
     $con = new ConnectBDD();
     $connect = $con->getConnect();
 
-    $isconnect = 0;
-    $isconnect = htmlspecialchars(($_POST['user']));
+    if (isset($_POST['user'])) {
+        $isconnect = 1;
+    } else $isconnect = 0;
+
 
 
     $Tgateway = new TacheGateway($connect);

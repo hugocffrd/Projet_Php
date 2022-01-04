@@ -6,8 +6,9 @@ require_once '../Modele/ListeTacheGateway.php';
 if (isset($_GET['action'])) {
     $Mail = $_GET['action'];
 }
-if (isset($_POST['nom'])) {
 
+
+if (isset($_POST['nom'])) {
 
     $con = new ConnectBDD();
     $connect = $con->getConnect();
@@ -35,10 +36,13 @@ if (isset($_POST['nom'])) {
     }
 
     if ($row == 0) {
+
+
+
         if (strlen($nom) <= 100) {
             $NewListe = new ListeTache($id, $nom, 1, $Mail); // on met privée à 1 pour indiquer que c'est une liste privée
             $LTgateway->insertListe($NewListe);
             header('Location:../Vues/accueilco.php');
-        } else header('Location:../Vues/creerListe.php?reg_err=nom)');
-    } else header('Location:../Vues/creerListe.php?reg_err=already');
-} else header('Location:../Vues/creerListe.php?reg_err=ErreurListe');
+        } else header('Location:../Vues/creerListe.php?reg_err=nom&action=' . $Mail);
+    } else header('Location:../Vues/creerListe.php?reg_err=already&action=' . $Mail);
+} else header('Location:../Vues/creerListe.php?reg_err=ErreurListe&action=' . $Mail);
