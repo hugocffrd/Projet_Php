@@ -13,13 +13,21 @@ class TacheGateway
     }
 
     public	function insertTache(Tache $tache){
-        $query="INSERT INTO tache VALUES(:IdT,:Nom,:Texte,:DateFin,:IdL)";
+        $query="INSERT INTO tache VALUES(:IdT,:Nom,:Texte,:DateFin,:IdL,:Checked)";
         $this->connect->executeQuery($query,array(
             ":IdT"=>array($tache->getIdT(),PDO::PARAM_STR),
             ":Nom"=>array($tache->getNom(),PDO::PARAM_STR),
             ":Texte"=>array($tache->getTexte(),PDO::PARAM_STR),
             ":DateFin"=>array($tache->getDateFin(),PDO::PARAM_STR),
-            ":IdL"=>array($tache->getIdL(),PDO::PARAM_STR)));
+            ":IdL"=>array($tache->getIdL(),PDO::PARAM_STR),
+            ":Checked"=>array($tache->getChecked(),PDO::PARAM_STR)));
+    }
+
+    public	function updateChecked(Tache $tache, int $Checked){
+        $query="update tache set checked=:Checked where IdT=:IdT";
+        $this->connect->executeQuery($query,array(
+            ":IdT"=>array($tache->getIdT(),PDO::PARAM_STR),
+            ":Checked"=>array($Checked,PDO::PARAM_STR)));
     }
 
     public function suppTache (Tache $tache){
@@ -35,7 +43,7 @@ class TacheGateway
             ":IdT"=>array($IdT,PDO::PARAM_STR)));
         $results=$this->connect->getResults();
         foreach ($results as $row){
-            $tabTache[]=new Tache($row["IdT"],$row["Nom"],$row["Texte"],$row["DateFin"],$row["IdL"]);
+            $tabTache[]=new Tache($row["IdT"],$row["Nom"],$row["Texte"],$row["DateFin"],$row["IdL"],$row["Checked"]);
         }
         return $tabTache;
 
@@ -47,7 +55,7 @@ class TacheGateway
         $this->connect->executeQuery($query,array());
         $results=$this->connect->getResults();
         foreach ($results as $row){
-            $tabTache[]=new Tache($row["IdT"],$row["Nom"],$row["Texte"],$row["DateFin"],$row["IdL"]);
+            $tabTache[]=new Tache($row["IdT"],$row["Nom"],$row["Texte"],$row["DateFin"],$row["IdL"],$row["Checked"]);
         }
         return $tabTache;
 
@@ -61,7 +69,7 @@ class TacheGateway
         $results=$this->connect->getResults();
         $tabTache=array();
         foreach ($results as $row){
-            $tabTache[]=new Tache($row["IdT"],$row["Nom"],$row["Texte"],$row["DateFin"],$row["IdL"]);
+            $tabTache[]=new Tache($row["IdT"],$row["Nom"],$row["Texte"],$row["DateFin"],$row["IdL"],$row["Checked"]);
         }
         return $tabTache;
 
