@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" media="screen" type="text/css" />
+
 </head>
 
 <body>
@@ -37,17 +37,15 @@
 
                 as $liste) {
                 if ($liste->getPrivee() == false) {
-                    $tabFindTache[] = $Tgateway->findByIdL($liste->getIdl());
+                    $tabFindTache[] = $Tgateway->findByIdL($liste->getIdL());
 
 
         ?>
                     <div id="containerList">
-                        <H2> <?php echo $liste->getNom(); ?></H2>
-                        <input type="hidden" action="sppListe.php" method="POST" value=<?php $liste->getIdl() ?> name="idListe" />
-                        <button type="button" class="btn" id="suppList" onclick=window.location.href='suppListe.php ? action=<?php $liste->getIdl() ?>'> X </button>
-
-                        </form>
-
+                        <div id="headerlist">
+                            <H2> <?php echo $liste->getNom() ?></H2>
+                            <button type="button" class="btn" id="suppList" onclick=window.location='Vues/suppListe.php?action=<?php echo $liste->getIdL() ?>'> X </button>
+                        </div>
 
                         <div class="btn-group-vertical">
                             <?php
@@ -56,14 +54,14 @@
                                 foreach ($tabT as $tache) {
 
 
-                                    if ($tache->getDateFin() < mktime(0, 0, 0, date("mm"), date("dd") + 1, date("YYYY"))) {
+                                    if ($tache->getDateFin() < date('Y-m-d')) {
                             ?>
-                                        <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache' id="BLate">
+                                        <button type="button" class="btn btn-secondary" onclick=window.location='Vues/gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BLate">
                                         <?php
                                         echo $tache->getNom();
                                     } else {
                                         ?>
-                                            <button type="button" class="btn btn-secondary" onclick=window.location.href='gestionTache' id="BOk">
+                                            <button type="button" class="btn btn-secondary" onclick=window.location='Vues/gestionTache.php?action=<?php echo $tache->getIdT() ?>' id="BOk">
                                     <?php
                                         echo $tache->getNom();
                                     }
@@ -74,22 +72,20 @@
 
                                             </button>
 
-                                        <?php
-                                    }
+                                            <?php
 
-
-                                        ?>
+                                            ?>
 
                         </div>
-                        <button type="button" class="btn btn-secondary" onclick=window.location.href='creerTache.php' id="addT"> +
+                        <button type="button" class="boutonAdd btn btn-success" onclick=window.location='Vues/creerTache.php?action=<?php echo $liste->getIdL() ?>'> + tâche
                         </button>
                     </div>
-            <?php
-
+        <?php
+                }
             }
         }
 
-            ?>
+        ?>
 
     </div>
 
@@ -107,10 +103,8 @@
 
     #container {
         margin-top: 5%;
-        margin-left: 50px;
-        margin-right: 50px;
+        display: flex;
         justify-content: center;
-        text-align: center;
     }
 
     .bouton {
@@ -121,6 +115,7 @@
         border-radius: 10px;
         cursor: pointer;
         width: 15%;
+        margin: 2px;
     }
 
 
@@ -130,17 +125,21 @@
 
 
     #containerList {
-        justify-content: center;
-        text-align: center;
         background-color: lightgray;
         border-radius: 10px;
         width: 40%;
         margin: 20px;
+        margin-left: auto;
+        margin-right: auto;
 
     }
 
     .btn-group-vertical {
         width: 100%;
+    }
+
+    .boutonAdd {
+        margin: 5px;
     }
 
     #BLate {
@@ -151,19 +150,15 @@
         color: white;
     }
 
-    #addT {
-        background-color: antiquewhite;
-        color: black;
-        margin: 2px;
+    #headerlist {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-
-
 
     #suppList {
         margin: 5px;
         background-color: firebrick;
-
-
     }
 </style>
 

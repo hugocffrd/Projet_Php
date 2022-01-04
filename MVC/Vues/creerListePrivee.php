@@ -1,69 +1,60 @@
-<!DOCTYPE html>
-
+<html>
 
 <head>
     <meta charset="utf-8">
-    <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 
 <body>
+<?php
+if (isset($_GET['action'])){
+    $Mail=$_GET['action'];
+}
 
-    <div id="container">
-        <?php
-        if (isset($_GET['login_err'])) {
-            $err = htmlspecialchars($_GET['login_err']);
+?>
+<div id="container">
+    <?php
+    if (isset($_GET['reg_err'])) {
+        $err = htmlspecialchars($_GET['reg_err']);
 
-            switch ($err) {
-                case 'password':
-        ?>
-                    <div class="alert alert-danger">
-                        <strong>Erreur </strong>mot de passe incorrect
-                    </div>
-                <?php
-                    break;
-
-                case 'mail':
+        switch ($err) {
+            case 'success':
                 ?>
-                    <div class="alert alert-danger">
-                        <strong>Erreur </strong>adresse mail incorrect
-                    </div>
+                <div class="alert alert-success">
+                    <strong>Succès </strong>Liste créée !
+                </div>
                 <?php
-                    break;
-                case 'sucess':
+                break;
+            case 'nom':
                 ?>
-                    <div class="alert alert-success">
-                        <strong>Succès </strong>Inscription réussie !
-                    </div>
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Le nom de votre liste est trop long !
+                </div>
                 <?php
-                    break;
-
-                case 'already':
+                break;
+            case 'ErreurListe':
                 ?>
-                    <div class="alert alert-danger">
-                        <strong>Erreur </strong> compte non existant
-                    </div>
-
-        <?php
-                    break;
-            }
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Veuillez renseigner un nom de liste!
+                </div>
+            <?php
         }
-        ?>
-        <form action="../Modele/Authentification.php" method="post">
-            <h1>Connexion</h1>
+    }
+    ?>
 
-            <label><b>Adresse email</b></label>
-            <input type="text" placeholder="Entrer votre email" name="mail" required>
 
-            <label><b>Mot de passe</b></label>
-            <input type="password" placeholder="Entrer le mot de passe" name="password" required>
 
-            <input type="submit">
-            <p class="text-center"><a href="creerUtilisateur.php">Inscription</a></p>
+    <form action="creerListePrivee_verif.php?action=<?php echo $Mail?>" method="POST">
+        <h1>Liste de tâches</h1>
 
-        </form>
+        <label><b>Nom de la liste</b></label>
+        <input type="text" placeholder="Nom de la liste" name="nom" />
 
-    </div>
+        <input type="submit" id='submit' value='Créer'>
+
+    </form>
+</div>
 </body>
 
 <style>

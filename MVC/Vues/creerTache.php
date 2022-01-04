@@ -7,6 +7,13 @@
 </head>
 
 <body>
+    <?php
+    if (isset($_GET['action'])) {
+        $IdL = $_GET['action'];
+    }
+
+    ?>
+
     <div id="container">
         <?php
         if (isset($_GET['reg_err'])) {
@@ -16,10 +23,12 @@
                 case 'success':
         ?>
                     <div class="alert alert-success">
-                        <strong>Succès </strong>Tâche créer !
+                        <strong>Succès </strong>Tâche créée !
                     </div>
                 <?php
+                    header('Location:../index.php');
                     break;
+
                 case 'nom':
                 ?>
                     <div class="alert alert-danger">
@@ -36,7 +45,7 @@
             }
         }
         ?>
-        <form action="creerTache_verif.php" method="POST">
+        <form action="creerTache_verif.php?action=<?php echo $IdL ?>" method="POST">
             <h1>Tâche</h1>
 
             <label><b>Nom de la Tâche</b></label>

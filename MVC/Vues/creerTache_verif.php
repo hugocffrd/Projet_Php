@@ -3,6 +3,10 @@ require_once '../ConnectBDD/ConnectBDD.php';
 require_once "../Modele/Tache.php";
 require_once '../Modele/TacheGateway.php';
 
+if (isset($_GET['action'])) {
+    $idl = $_GET['action'];
+}
+
 if (isset($_POST['Ntache'])) {
 
     $con = new ConnectBDD();
@@ -16,7 +20,6 @@ if (isset($_POST['Ntache'])) {
     } else $date = null;
 
 
-    $idl = 0; // 0 pour public de base
     $nbid = 0;
 
     //Pour connaitre le nombre de tâches totales
