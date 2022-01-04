@@ -16,6 +16,11 @@ if (isset($_GET['action'])) {
     $IdL = $_GET['action'];
 }
 
+if (isset($_GET['user'])) {
+    $isconected = 1;
+} else $isconected = 0;
+
+
 $tabFindtache[] = $Tgateway->findByIdL($IdL);
 $tabFindListe[] = $LTgateway->findById($IdL);
 foreach ($tabFindtache as $tabT) {
@@ -28,8 +33,12 @@ foreach ($tabFindListe as $tabL) {
         $LTgateway->suppListe($liste);
     }
 }
-if ($liste->getPrivee() == 1) {
+
+if ($isconected == 1) {
     header('Location:accueilco.php');
-} else header('location:../index.php');
+} else {
+    header('Location:../index.php');
+}
+
 
 ?>

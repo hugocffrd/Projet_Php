@@ -9,6 +9,18 @@ class Tache
     private $Texte;
     private $DateFin;
     private $IdL;
+    private $Checked;
+
+
+    public function getChecked()
+    {
+        return $this->Checked;
+    }
+
+    public function setIdT($IdT): void
+    {
+        $this->IdT = $IdT;
+    }
 
     public function getIdT()
     {
@@ -51,19 +63,19 @@ class Tache
         return $this->IdL;
     }
 
-    public function __construct($IdT,$Nom,$Texte,$DateFin,$IdL)
+    public function __construct($IdT, $Nom, $Texte, $DateFin, $IdL, $Checked)
     {
-        $this->IdT=$IdT;
-        $this->Nom=$Nom;
-        $this->Texte=$Texte;
-        $this->DateFin=$DateFin;
-        $this->IdL=$IdL;
+        $this->IdT = $IdT;
+        $this->Nom = $Nom;
+        $this->Texte = $Texte;
+        $this->DateFin = $DateFin;
+        $this->IdL = $IdL;
+        $this->Checked = $Checked;
     }
 
-    public function show(){
-        print $this->IdT." ".$this->Nom.",".$this->Texte.",".$this->DateFin.",".$this->IdL."<br>";
+    public function show()
+    {
+        print $this->IdT . " " . $this->Nom . "," . $this->Texte . "," . $this->DateFin . "," . $this->IdL . "<br>";
     }
-
-
 }
 ?>

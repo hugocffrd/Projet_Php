@@ -5,7 +5,8 @@ require_once '../Modele/ListeTacheGateway.php';
 
 
 if (isset($_POST['nom'])) {
-
+    $isconnect = 0;
+    $isconnect = htmlspecialchars(($_POST['user']));
 
     $con = new ConnectBDD();
     $connect = $con->getConnect();
@@ -34,7 +35,9 @@ if (isset($_POST['nom'])) {
         if (strlen($nom) <= 100) {
             $NewListe = new ListeTache($id, $nom, 0, NULL);
             $LTgateway->insertListe($NewListe);
-            header('Location:../index.php');
-        } else header('Location:creerListe.php?reg_err=nom)');
+            if ($isconnect == 1) {
+                header('Location:accueilco.php');
+            } else header('Location:../index.php');
+        } else header('Location:creerListe.php?reg_err=nom');
     } else header('Location:creerListe.php?reg_err=already');
 } else header('Location:creerListe.php?reg_err=ErreurListe');
