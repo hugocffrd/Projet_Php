@@ -13,12 +13,14 @@ if (isset($_POST['nom'])){
     $connect = $con->getConnect();
     $LTgateway = new ListeTacheGateway($connect);
     $nom = htmlspecialchars (($_POST['nom']));
-    $nbid = 0;
 
-    //Pour connaitre le nombre de listes totales
-    $check = $connect->prepare('SELECT IdL from listetache');
-    $check->execute(array($nbid));
-    $Nbrow = $check->rowCount();
+    //Pour connaitre l'id max
+    $query="SELECT MAX(IdL) from listetache";
+    $connect->executeQuery($query,array());
+    $results=$connect->getResults();
+    foreach ($results as $row){
+        $Nbrow=($row["MAX(IdL)"]);
+    }
 
     //Pour savoir si une liste avec le même nom existe
     $check = $connect->prepare('SELECT Nom from listetache WHERE Nom = ?');
@@ -26,7 +28,7 @@ if (isset($_POST['nom'])){
     $row = $check->rowCount();
 
     // si il n'y a aucune liste alors on créer l'id 0
-    if ($Nbrow == 0) {
+    if ($Nbrow == NULL) {
         $id = 0;
     } else {
         $id = $Nbrow + 1; // Créer une id pour la tâche que l'on créer

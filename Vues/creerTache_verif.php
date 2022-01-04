@@ -20,15 +20,17 @@ if (isset($_POST['Ntache'])) {
     } else $date = null;
 
 
-    $nbid = 0;
 
-    //Pour connaitre le nombre de tâches totales
-    $check = $connect->prepare('SELECT IdT from tache');
-    $check->execute(array($nbid));
-    $Nbrow = $check->rowCount();
+    //Pour connaitre l'id max
+    $query="SELECT MAX(IdT) from tache";
+    $connect->executeQuery($query,array());
+    $results=$connect->getResults();
+    foreach ($results as $row){
+        $Nbrow=($row["MAX(IdT)"]);
+    }
 
     // si il n'y a aucune tâche alors on créer l'id 0
-    if ($Nbrow == 0) {
+    if ($Nbrow == NULL) {
         $id = 0;
     } else {
         $id = $Nbrow + 1; // Créer une id pour la tâche que l'on créer
@@ -36,7 +38,7 @@ if (isset($_POST['Ntache'])) {
 
 
     if (strlen($nom) < 100) {
-        $tacheCreer = new Tache($id, $nom, $desc, $date, $idl,0);
+        $tacheCreer = new Tache($id, $nom, $desc, $date,$idl,0);
         $Tgateway->insertTache($tacheCreer);
         header('Location:CreerTache.php?reg_err=success');
     } else header('Location:CreerTache.php?reg_err=nom');
