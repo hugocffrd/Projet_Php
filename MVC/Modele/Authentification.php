@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../ConnectBDD/ConnectBDD.php';
+include '../ConnectBDD/ConnectBDD.php';
 
 if (isset($_POST['mail']) && isset($_POST['password'])) {
 
