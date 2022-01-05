@@ -25,7 +25,7 @@
                     if (strlen($mail) <= 100) {
                         if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                             if ($pwd == $pwd_retype) {
-                                // $password=hash('sha256',$password);
+                                //$password=hash('sha256',$password);
                                 // $ip=$_SERVER['REMOTE_ADDR'];
 
                                 $utilisateur = new Utilisateur($mail, $nom, $prenom, $pwd);
