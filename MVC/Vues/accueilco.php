@@ -178,6 +178,7 @@ $data = $req->fetch();
                                             <?php if ($tache->getChecked()) { ?>
                                                 <form class="checkbox" method="post" action="../Modele/updateTache.php?action=<?php echo $tache->getIdT() ?>">
                                                     <input class="form-check-input" checked="true" type="checkbox" id="checkboxNoLabel" onclick="this.form.submit()">
+                                                    <input type="hidden" name="user" value="<?php echo $_SESSION['user'] ?>">
 
                                                     <?php if ($tache->getDateFin() < date('Y-m-d')) { ?>
                                                         <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>&user=1' id="BLate">
@@ -193,6 +194,7 @@ $data = $req->fetch();
                                                 <form class="checkbox" method="post" action="../Modele/updateTache.php?action=<?php echo $tache->getIdT() ?>">
 
                                                     <input class="form-check-input" type="checkbox" id="checkboxNoLabel" onclick="this.form.submit()">
+                                                    <input type="hidden" name="user" value="<?php echo $_SESSION['user'] ?>">
 
                                                     <?php if ($tache->getDateFin() < date('Y-m-d')) { ?>
                                                         <button type="button" class="btn btn-secondary" onclick=window.location='gestionTache.php?action=<?php echo $tache->getIdT() ?>&user=1' id="BLate">

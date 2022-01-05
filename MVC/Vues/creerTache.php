@@ -12,7 +12,7 @@
         $IdL = $_GET['action'];
     }
     if (isset($_GET['user'])) {
-        $isconected = 1;
+        $isconected =  $_GET['user'];
     } else $isconected = 0;
 
 

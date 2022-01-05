@@ -13,7 +13,7 @@ if (isset($_POST['Ntache'])) {
     $connect = $con->getConnect();
 
     if (isset($_POST['user'])) {
-        $isconnect = 1;
+        $isconnect = $_POST['user'];
     } else $isconnect = 0;
 
 
@@ -51,12 +51,13 @@ if (isset($_POST['Ntache'])) {
         } else {
             header('Location:../Vues/CreerTache.php?reg_err=nom');
         }
-    }
-    if (strlen($nom) < 100) {
-        $tacheCreer = new Tache($id, $nom, $desc, $date, $idl, 0);
-        $Tgateway->insertTache($tacheCreer);
-        header('Location:../Vues/accueilco.php');
     } else {
-        header('Location:../Vues/CreerTache.php?reg_err=nom&user=1');
+        if (strlen($nom) < 100) {
+            $tacheCreer = new Tache($id, $nom, $desc, $date, $idl, 0);
+            $Tgateway->insertTache($tacheCreer);
+            header('Location:../Vues/accueilco.php');
+        } else {
+            header('Location:../Vues/CreerTache.php?reg_err=nom&user=1');
+        }
     }
 }
