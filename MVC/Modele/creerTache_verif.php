@@ -7,7 +7,6 @@ if (isset($_GET['action'])) {
     $idl = $_GET['action'];
 }
 
-
 if (isset($_POST['Ntache'])) {
     $con = new ConnectBDD();
     $connect = $con->getConnect();

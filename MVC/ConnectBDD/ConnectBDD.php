@@ -1,7 +1,6 @@
 <?php
 require 'Connection.php';
 
-//root à changer avec un autre utilisateur qui a accès à la database
 class ConnectBDD
 {
     private $connect;

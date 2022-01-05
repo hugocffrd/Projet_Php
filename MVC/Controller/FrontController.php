@@ -34,3 +34,4 @@ function connexion()
 {
     require_once "Vues/Connexion.php";
 }
+?>
