@@ -34,13 +34,29 @@ if (isset($_POST['nom'])) {
         $id = $Nbrow + 1; // Créer une id pour la tâche que l'on créer
     }
 
-    if ($row == 0) {
-        if (strlen($nom) <= 100) {
-            $NewListe = new ListeTache($id, $nom, 0, NULL);
-            $LTgateway->insertListe($NewListe);
-            if ($isconnect == 1) {
+
+
+    if ($isconnect == 1) {
+        if ($row == 0) {
+
+            if (strlen($nom) <= 100) {
+                $NewListe = new ListeTache($id, $nom, 0, NULL);
+                $LTgateway->insertListe($NewListe);
                 header('Location:../Vues/accueilco.php');
-            } else header('Location:../index.php');
-        } else header('Location:../Vues/creerListe.php?reg_err=nom');
-    } else header('Location:../Vues/creerListe.php?reg_err=already');
-} else header('Location:../Vues/creerListe.php?reg_err=ErreurListe');
+            } else {
+                header('Location:../Vues/creerListe.php?reg_err=nom&action=user');
+            }
+        } else {
+            header('Location:../Vues/creerListe.php?reg_err=already&action=user');
+        }
+    } else {
+        if ($row == 0) {
+
+            if (strlen($nom) <= 100) {
+                $NewListe = new ListeTache($id, $nom, 0, NULL);
+                $LTgateway->insertListe($NewListe);
+                header('Location:../index.php');
+            } else header('Location:../Vues/creerListe.php?reg_err=nom');
+        } else header('Location:../Vues/creerListe.php?reg_err=already');
+    }
+}
