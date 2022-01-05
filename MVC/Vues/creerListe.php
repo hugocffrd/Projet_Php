@@ -27,34 +27,41 @@
                     </div>
                 <?php
                     break;
-                case 'nom':
+                case 'already'
                 ?>
-                    <div class="alert alert-danger">
-                        <strong>Echec </strong>Le nom de votre tâche est trop long !
-                    </div>
-                <?php
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Le nom de votre liste est déjà pris !
+                </div>
+            <?php
+                    break;
+                case 'nom':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Le nom de votre liste est trop long !
+                </div>
+            <?php
                     break;
                 case 'ErreurListe':
-                ?>
-                    <div class="alert alert-danger">
-                        <strong>Echec </strong>Veuillez renseigner un nom de liste!
-                    </div>
-        <?php
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Echec </strong>Veuillez renseigner un nom de liste!
+                </div>
+    <?php
             }
         }
-        ?>
+    ?>
 
 
 
-        <form action="../modele/creerListe_verif.php" method="POST">
-            <h1>Liste de tâches</h1>
+    <form action="../modele/creerListe_verif.php" method="POST">
+        <h1>Liste de tâches</h1>
 
-            <label><b>Nom de la liste</b></label>
-            <input type="text" placeholder="Nom de la liste" name="nom" required />
-            <input type="hidden" name="user" value="<?php echo $isconected; ?>">
-            <input type="submit" id='submit' value='Créer'>
+        <label><b>Nom de la liste</b></label>
+        <input type="text" placeholder="Nom de la liste" name="nom" required />
+        <input type="hidden" name="user" value="<?php echo $isconected; ?>">
+        <input type="submit" id='submit' value='Créer'>
 
-        </form>
+    </form>
     </div>
 </body>
 
