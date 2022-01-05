@@ -141,6 +141,18 @@
         text-decoration: line-through;
     }
 
+    input[type=checkbox] {
+        -ms-transform: scale(2);
+        -moz-transform: scale(2);
+        -webkit-transform: scale(2);
+        -o-transform: scale(2);
+        transform: scale(2);
+        padding: 10px;
+    }
+
+
+
+
     #titlePublic {
         text-align: center;
     }
